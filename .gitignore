@@ -1,0 +1,8 @@
+# Python Files
+*.pyc
+
+# Compiled Documents
+*.pdf
+*.ps
+
+#just using the example template from moodle - the above is subject to change
