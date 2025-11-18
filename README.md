@@ -2,28 +2,21 @@
 
 
 
-## Getting started
+## Description
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This project's aim is to find a way to be able to develop a consistent way of delivering the University of Glasgow's Design System to all of the disparate (dissimilar) platforms out there.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Current Implementation: Platforms that have implemented their set of Figma design files, have had to hardcode everything themselves.
 
-## Add your files
+## MVP
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Working prototype where the design system is delivering design to a prototyped platform (e.g a mockup website that we make or StoryBook).
 
-```
-cd existing_repo
-git remote add origin https://stgit.dcs.gla.ac.uk/team-project-h/2025/sh27/sh27-main.git
-git branch -M main
-git push -uf origin main
+If the customer makes a change to their design files, then it is updated to any platform using their set of design files.
 
-```
+## Current Workflow
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://stgit.dcs.gla.ac.uk/team-project-h/2025/sh27/sh27-main/-/settings/integrations)
 
 ## Collaborate with your team
 
