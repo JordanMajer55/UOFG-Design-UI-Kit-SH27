@@ -1,0 +1,19 @@
+{
+  "name": "sh27-main",
+  "version": "1.0.0",
+  "description": "This project's aim is to find a way to be able to develop a consistent way of delivering the University of Glasgow's Design System to all of the disparate (dissimilar) platforms out there.",
+  "repository": {
+    "type": "git",
+    "url": "https://stgit.dcs.gla.ac.uk/team-project-h/2025/sh27/sh27-main.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  }
+}
