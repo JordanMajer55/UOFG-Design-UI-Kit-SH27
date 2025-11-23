@@ -39,7 +39,7 @@ function test() {
         var response, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("http://localhost:3000/")];
+                case 0: return [4 /*yield*/, fetch("http://172.21.160.1:3000/")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
