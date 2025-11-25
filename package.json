@@ -1,8 +1,8 @@
 {
   "name": "sh27-main",
   "version": "1.0.0",
-  
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^4.18.2",
     "typescript": "^5.9.3"
   },
@@ -19,7 +19,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "typescript": "^5.2.2"
   }
 }
