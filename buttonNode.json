@@ -1,0 +1,192 @@
+{
+  "name": "UofG Component library - CS (Copy)",
+  "lastModified": "2025-11-24T18:46:54Z",
+  "thumbnailUrl": "https://s3-alpha.figma.com/thumbnails/aadab539-604b-4fba-ab6a-2e8d0049bcd1?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQ4GOSFWCW22YBZNM%2F20251123%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251123T120000Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=bfb6abfd2f5c989b3810f13b4b2129086862bf78802a6e69bd45d67ae8cecef3",
+  "version": "2290065894611377157",
+  "role": "editor",
+  "editorType": "figma",
+  "linkAccess": "view",
+  "nodes": {
+    "29:364": {
+      "document": {
+        "id": "29:364",
+        "name": "Type=Primary, Hover=False, Focus=False, Disabled=False, Icon=False",
+        "type": "COMPONENT",
+        "scrollBehavior": "SCROLLS",
+        "children": [
+          {
+            "id": "26:270",
+            "name": "Button",
+            "type": "TEXT",
+            "scrollBehavior": "SCROLLS",
+            "componentPropertyReferences": {
+              "characters": "Label#186:0"
+            },
+            "blendMode": "PASS_THROUGH",
+            "fills": [
+              {
+                "blendMode": "NORMAL",
+                "type": "SOLID",
+                "color": {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1,
+                  "a": 1
+                }
+              }
+            ],
+            "strokes": [],
+            "strokeWeight": 1,
+            "strokeAlign": "OUTSIDE",
+            "absoluteBoundingBox": {
+              "x": 849,
+              "y": 235,
+              "width": 57,
+              "height": 24
+            },
+            "absoluteRenderBounds": {
+              "x": 850.4630126953125,
+              "y": 240.33900451660156,
+              "width": 53.36785888671875,
+              "height": 13.964996337890625
+            },
+            "constraints": {
+              "vertical": "TOP",
+              "horizontal": "LEFT"
+            },
+            "layoutAlign": "INHERIT",
+            "layoutGrow": 0,
+            "layoutSizingHorizontal": "HUG",
+            "layoutSizingVertical": "HUG",
+            "characters": "Button",
+            "characterStyleOverrides": [],
+            "styleOverrideTable": {},
+            "lineTypes": [
+              "NONE"
+            ],
+            "lineIndentations": [
+              0
+            ],
+            "style": {
+              "fontFamily": "Swiss721 BT",
+              "fontPostScriptName": "Swiss721BT-Regular",
+              "fontStyle": "Regular",
+              "fontWeight": 400,
+              "textAutoResize": "WIDTH_AND_HEIGHT",
+              "fontSize": 19,
+              "textAlignHorizontal": "LEFT",
+              "textAlignVertical": "TOP",
+              "letterSpacing": 0,
+              "lineHeightPx": 24,
+              "lineHeightPercent": 105.35094451904297,
+              "lineHeightPercentFontSize": 126.31578826904297,
+              "lineHeightUnit": "PIXELS"
+            },
+            "layoutVersion": 4,
+            "effects": [],
+            "interactions": []
+          }
+        ],
+        "blendMode": "PASS_THROUGH",
+        "clipsContent": true,
+        "background": [
+          {
+            "blendMode": "NORMAL",
+            "type": "SOLID",
+            "color": {
+              "r": 0,
+              "g": 0.21960784494876862,
+              "b": 0.3960784375667572,
+              "a": 1
+            }
+          }
+        ],
+        "fills": [
+          {
+            "blendMode": "NORMAL",
+            "type": "SOLID",
+            "color": {
+              "r": 0,
+              "g": 0.21960784494876862,
+              "b": 0.3960784375667572,
+              "a": 1
+            }
+          }
+        ],
+        "strokes": [],
+        "cornerRadius": 6,
+        "cornerSmoothing": 0,
+        "strokeWeight": 1,
+        "strokeAlign": "INSIDE",
+        "backgroundColor": {
+          "r": 0,
+          "g": 0.21960784494876862,
+          "b": 0.3960784375667572,
+          "a": 1
+        },
+        "styles": {
+          "fills": "289:2919",
+          "fill": "289:2919"
+        },
+        "layoutMode": "HORIZONTAL",
+        "counterAxisSizingMode": "FIXED",
+        "counterAxisAlignItems": "CENTER",
+        "primaryAxisAlignItems": "CENTER",
+        "paddingLeft": 36,
+        "paddingRight": 36,
+        "paddingTop": 12,
+        "paddingBottom": 12,
+        "itemSpacing": 10,
+        "layoutWrap": "NO_WRAP",
+        "absoluteBoundingBox": {
+          "x": 813,
+          "y": 223,
+          "width": 129,
+          "height": 48
+        },
+        "absoluteRenderBounds": {
+          "x": 813,
+          "y": 223,
+          "width": 129,
+          "height": 48
+        },
+        "constraints": {
+          "vertical": "TOP",
+          "horizontal": "LEFT"
+        },
+        "layoutSizingHorizontal": "HUG",
+        "layoutSizingVertical": "FIXED",
+        "effects": [],
+        "interactions": []
+      },
+      "components": {
+        "29:364": {
+          "key": "903844afe06cf17ec44a439ae59bfc40435e8360",
+          "name": "Type=Primary, Hover=False, Focus=False, Disabled=False, Icon=False",
+          "description": "",
+          "remote": false,
+          "componentSetId": "29:367",
+          "documentationLinks": []
+        }
+      },
+      "componentSets": {
+        "29:367": {
+          "key": "1c073fc6945c669b0670ae53c1258a47f4e377af",
+          "name": "Button",
+          "description": "",
+          "remote": false
+        }
+      },
+      "schemaVersion": 0,
+      "styles": {
+        "289:2919": {
+          "key": "3e796fa2bf2e05bfe97700d30bdcd4e2c35a9aa7",
+          "name": "Brand colours/University blue",
+          "styleType": "FILL",
+          "remote": false,
+          "description": ""
+        }
+      }
+    }
+  }
+}

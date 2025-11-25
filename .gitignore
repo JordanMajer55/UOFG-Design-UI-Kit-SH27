@@ -8,4 +8,5 @@
 #node_modules Directory
 node_modules/
 
-#just using the example template from moodle - the above is subject to change
+#api keys
+.env
