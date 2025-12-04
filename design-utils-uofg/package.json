@@ -1,9 +1,0 @@
-{
-  "name": "@uofg/design-utils-uofg",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
-  "description": "Utility functions for applying design patterns to HTML.",
-  "author": "sh27",
-  "license": "MIT"
-}
