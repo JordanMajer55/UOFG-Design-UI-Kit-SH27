@@ -1,4 +1,5 @@
 const fs = require("fs");
+const fetchNode = require("./figmaGetNode.js")
 
 function rgbaToCss(color) {
   const r = Math.round(color.r * 255);
@@ -8,10 +9,10 @@ function rgbaToCss(color) {
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
 
-function generateTokens() {
-  const node = JSON.parse(fs.readFileSync("buttonNode.json", "utf8"));
+async function generateToken(comp_id) {
+  const node = await fetchNode(comp_id);
 
-  const component = node.nodes["29:364"].document;
+  const component = node.nodes[comp_id].document;
   const textNode = component.children[0];
   const bg = component.fills[0].color;
 
@@ -41,4 +42,4 @@ function generateTokens() {
   console.log("Tokens written to buttonTokens.json");
 }
 
-generateTokens();
+generateToken("29:364");
