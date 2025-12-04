@@ -39,13 +39,13 @@ function test() {
         var response, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch("http://localhost:3000/")];
+                case 0: return [4 /*yield*/, fetch("http://localhost:3000/button-primary")];
                 case 1:
                     response = _a.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    console.log(data.message);
+                    console.log(data);
                     return [2 /*return*/];
             }
         });

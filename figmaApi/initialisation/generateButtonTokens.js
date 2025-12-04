@@ -9,7 +9,7 @@ function rgbaToCss(color) {
   return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
 
-async function generateToken(comp_id) {
+async function generateButtonToken(comp_id, filename) {
   const node = await fetchNode(comp_id);
 
   const component = node.nodes[comp_id].document;
@@ -21,6 +21,8 @@ async function generateToken(comp_id) {
       primary: {
         backgroundColor: rgbaToCss(bg),
         borderRadius: component.cornerRadius,
+        width: component.width,
+        height: component.height,
         padding: {
           top: component.paddingTop,
           right: component.paddingRight,
@@ -38,8 +40,8 @@ async function generateToken(comp_id) {
     }
   };
 
-  fs.writeFileSync("buttonTokens.json", JSON.stringify(tokens, null, 2));
-  console.log("Tokens written to buttonTokens.json");
+  fs.writeFileSync(`${filename}.json`, JSON.stringify(tokens, null, 2));
+  console.log(`Tokens written to ${filename}.json`);
 }
 
-generateToken("29:364");
+generateButtonToken("29:364", "Button");

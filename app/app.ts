@@ -1,16 +1,33 @@
 const express = require('express');
-const app = express()
-const figma_port = 3000
-const client_port = 3001
+const app = express();
+const fs = require("fs/promises");
+const port = 3000;
+
+async function getJson(filename: string) {
+    try {
+        const data = await fs.readFile(filename, 'utf8');
+        return JSON.parse(data);
+    }
+    catch (err) {
+        console.error(err);
+        return null;
+    }
+}
 
 app.get('/', (req: any, res: any) => {
-    res.send({"message" : 'Hello World!'})
+    res.send({"message" : 'Hello World!'});
 })
 
-app.listen(figma_port, () => {
-
+app.get('/button-primary', async (req: any, res: any) => {
+    const json = await getJson("./../buttonTokens.json")
+    if (json != null) {
+        res.json(json);
+    }
+    else {
+        res.status(500).json({error: "Error Occured While While Fetching Data"});
+    }
 })
 
-app.listen(client_port, () => {
-    
+app.listen(port, () => {
+
 })
