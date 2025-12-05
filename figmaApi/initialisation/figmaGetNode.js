@@ -15,9 +15,7 @@ const res = await fetch(url, {
   });
 
   const json = await res.json();
-  fs.writeFileSync("buttonNode.json", JSON.stringify(json, null, 2));
-
-  console.log("Saved:", "buttonNode.json");
+  return json;
 }
 
-fetchNode("29:364");
+module.exports = fetchNode;
