@@ -21,8 +21,8 @@ async function generateButtonToken(comp_id, filename) {
       primary: {
         backgroundColor: rgbaToCss(bg),
         borderRadius: component.cornerRadius,
-        width: component.width,
-        height: component.height,
+        width: component.absoluteBoundingBox.width,
+        height: component.absoluteBoundingBox.height,
         padding: {
           top: component.paddingTop,
           right: component.paddingRight,
