@@ -1,3 +1,4 @@
+//outputs a fullFile.json that contains all the figma components
 require("dotenv").config();
 const fs = require("fs");
 

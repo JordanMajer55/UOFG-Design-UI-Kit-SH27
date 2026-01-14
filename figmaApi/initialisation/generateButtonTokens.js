@@ -1,3 +1,4 @@
+//generates a BUtton.json file with specific id's properties
 const fs = require("fs");
 const fetchNode = require("./figmaGetNode.js")
 

@@ -1,3 +1,4 @@
+//file that fetches node from figma, then exports it to a "generate*Token" file
 require("dotenv").config();
 const fetch = require("node-fetch");
 const fs = require("fs");
