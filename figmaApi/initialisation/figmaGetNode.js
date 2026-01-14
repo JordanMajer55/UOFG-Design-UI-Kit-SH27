@@ -1,3 +1,4 @@
+//file that fetches node from figma, then exports it to a "generate*Token" file
 require("dotenv").config();
 const fetch = require("node-fetch");
 const fs = require("fs");
@@ -15,9 +16,7 @@ const res = await fetch(url, {
   });
 
   const json = await res.json();
-  fs.writeFileSync("buttonNode.json", JSON.stringify(json, null, 2));
-
-  console.log("Saved:", "buttonNode.json");
+  return json;
 }
 
-fetchNode("29:364");
+module.exports = fetchNode;

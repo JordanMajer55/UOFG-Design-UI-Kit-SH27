@@ -1,0 +1,23 @@
+{
+  "button": {
+    "primary": {
+      "backgroundColor": "rgba(0, 56, 101, 1)",
+      "borderRadius": 6,
+      "width": 129,
+      "height": 48,
+      "padding": {
+        "top": 12,
+        "right": 36,
+        "bottom": 12,
+        "left": 36
+      },
+      "typography": {
+        "fontFamily": "Swiss721 BT",
+        "fontWeight": 400,
+        "fontSize": 19,
+        "lineHeight": 24,
+        "letterSpacing": 0
+      }
+    }
+  }
+}
