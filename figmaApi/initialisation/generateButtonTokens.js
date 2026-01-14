@@ -45,4 +45,4 @@ async function generateButtonToken(comp_id, filename) {
   console.log(`Tokens written to ${filename}.json`);
 }
 
-generateButtonToken("29:364", "Button");
+module.exports = generateButtonToken;
