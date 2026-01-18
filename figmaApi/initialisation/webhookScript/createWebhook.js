@@ -13,10 +13,17 @@ fetch(`https://api.figma.com/v1/files/${process.env.FILE_ID}/v2/webhooks`, {
     body:JSON.stringify({
         event_type: 'PING',
         context: 'file',
-        endpoint: 'https://shaky-pianos-shine.loca.lt/updates',
+        endpoint: 'https://nine-windows-lick.loca.lt/updates',
         status: 'ACTIVE',
-        description: 'Webhook to register with Figma file'
+        description: 'PING webhook to test implementation'
 
     })
     
 })
+
+    .then(res => {
+        console.log("Status:", res.status);
+        return res.json();
+    })
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
