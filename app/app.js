@@ -30,9 +30,9 @@ app.get('/button-primary', async (req, res) => {
         res.status(500).json({error: "Error Occured While While Fetching Data"});
     }
 })
-
+app.post('')
 //Creating a webhook endpoint - receives updates at this endpoint
-app.post('/v2/webhooks',() =>{
+app.post('/updates',() =>{
     console.log(req.body);
     //whatever we decide to do with this data - put it in a new file 
     // or update a curr ver
