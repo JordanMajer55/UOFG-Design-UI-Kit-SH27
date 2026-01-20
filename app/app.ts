@@ -3,7 +3,7 @@ const app = express();
 const fs = require("fs/promises");
 const port = 3000;
 const prefix = "./../figmafiles/";
-const cors = require("cors");
+const cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 
 async function getJson(filename: string) {
