@@ -14,12 +14,8 @@ async function getJson(filename: string) {
     }
 }
 
-app.get('/', (req: any, res: any) => {
-    res.send({"message" : 'Hello World!'});
-})
-
 app.get('/button-primary', async (req: any, res: any) => {
-    const json = await getJson("./../buttonTokens.json")
+    const json = await getJson("./../figmaApi/initialisation/Button.json")
     if (json != null) {
         res.json(json);
     }

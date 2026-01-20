@@ -66,7 +66,7 @@ app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0,
     var json;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getJson("./../buttonTokens.json")];
+            case 0: return [4 /*yield*/, getJson("./../figmaApi/initialisation/Button.json")];
             case 1:
                 json = _a.sent();
                 if (json != null) {
