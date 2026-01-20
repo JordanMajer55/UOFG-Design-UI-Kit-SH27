@@ -41,8 +41,8 @@ async function generateButtonToken(comp_id, filename) {
     }
   };
 
-  fs.writeFileSync(`${filename}.json`, JSON.stringify(tokens, null, 2));
+  fs.writeFileSync(`./../figmafiles/${filename}.json`, JSON.stringify(tokens, null, 2));
   console.log(`Tokens written to ${filename}.json`);
 }
 
-generateButtonToken("29:364", "Button");
+module.exports = generateButtonToken;

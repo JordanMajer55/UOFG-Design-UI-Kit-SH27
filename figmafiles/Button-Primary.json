@@ -3,6 +3,8 @@
     "primary": {
       "backgroundColor": "rgba(0, 56, 101, 1)",
       "borderRadius": 6,
+      "width": 129,
+      "height": 48,
       "padding": {
         "top": 12,
         "right": 36,
