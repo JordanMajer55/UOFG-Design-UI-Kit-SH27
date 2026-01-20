@@ -3,6 +3,8 @@ const app = express();
 const fs = require("fs/promises");
 const port = 3000;
 
+app.use(express.json());
+
 async function getJson(filename) {
     try {
         const data = await fs.readFile(filename, 'utf8');
@@ -30,15 +32,17 @@ app.get('/button-primary', async (req, res) => {
         res.status(500).json({error: "Error Occured While While Fetching Data"});
     }
 })
-app.post('')
+
 //Creating a webhook endpoint - receives updates at this endpoint
-app.post('/updates',() =>{
+app.post('/updates',(req,res) =>{
+    console.log('Updating changes made ....');
     console.log(req.body);
     //whatever we decide to do with this data - put it in a new file 
     // or update a curr ver
     //extract whats needed and put through a generating token func
-    console.log('Updating changes made ....')
-    res.status(200)
+    
+   
+    res.status(200);
 })
 
 app.listen(port, () => {
