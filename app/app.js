@@ -39,6 +39,9 @@ var express = require('express');
 var app = express();
 var fs = require("fs/promises");
 var port = 3000;
+var prefix = "./../figmafiles/";
+var cors = require("cors");
+app.use(cors());
 function getJson(filename) {
     return __awaiter(this, void 0, void 0, function () {
         var data, err_1;
@@ -59,14 +62,11 @@ function getJson(filename) {
         });
     });
 }
-app.get('/', function (req, res) {
-    res.send({ "message": 'Hello World!' });
-});
 app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var json;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getJson("./../figmaApi/initialisation/Button.json")];
+            case 0: return [4 /*yield*/, getJson(prefix + "Button.json")];
             case 1:
                 json = _a.sent();
                 if (json != null) {

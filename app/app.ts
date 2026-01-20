@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const fs = require("fs/promises");
 const port = 3000;
+const prefix = "./../figmafiles/";
+const cors = require("cors");
+app.use(cors());
 
 async function getJson(filename: string) {
     try {
@@ -15,7 +18,7 @@ async function getJson(filename: string) {
 }
 
 app.get('/button-primary', async (req: any, res: any) => {
-    const json = await getJson("./../figmaApi/initialisation/Button.json")
+    const json = await getJson(prefix + "Button.json")
     if (json != null) {
         res.json(json);
     }
