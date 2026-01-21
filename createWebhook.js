@@ -4,18 +4,17 @@
 require("dotenv").config();
 
 
-fetch(`https://api.figma.com/v2/files/${process.env.FILE_ID}/webhooks`, {
+fetch(`https://api.figma.com/v2/webhooks`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.FIGMA_TOKEN}`
+        'X-Figma-Token': process.env.FIGMA_TOKEN,
     },
     body:JSON.stringify({
         event_type: 'PING',
         team_id: process.env.TEAM_ID,
-        context: 'file',
+        //file_key: process.env.FILE_ID,
         endpoint: 'https://mean-webs-find.loca.lt/updates',
-        status: 'ACTIVE',
         description: 'Webhook to test implementation'
 
     })
@@ -30,3 +29,5 @@ fetch(`https://api.figma.com/v2/files/${process.env.FILE_ID}/webhooks`, {
     .catch(err => console.error(err));
     console.log(process.env.FILE_ID);
     console.log(process.env.FIGMA_TOKEN);
+    console.log(process.env.TEAM_ID);
+
