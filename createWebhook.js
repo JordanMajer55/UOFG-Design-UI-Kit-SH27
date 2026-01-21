@@ -13,6 +13,7 @@ fetch(`https://api.figma.com/v2/webhooks`, {
     body:JSON.stringify({
         event_type: 'PING',
         team_id: process.env.TEAM_ID,
+        passcode: 'Verified',
         //file_key: process.env.FILE_ID,
         endpoint: 'https://mean-webs-find.loca.lt/updates',
         description: 'Webhook to test implementation'
@@ -27,7 +28,5 @@ fetch(`https://api.figma.com/v2/webhooks`, {
     })
     .then(data => console.log(data))
     .catch(err => console.error(err));
-    console.log(process.env.FILE_ID);
-    console.log(process.env.FIGMA_TOKEN);
-    console.log(process.env.TEAM_ID);
+
 
