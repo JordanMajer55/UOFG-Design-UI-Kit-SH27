@@ -35,6 +35,8 @@ async function styleButtonByClass(name, type) {
     }
 }
 
+module.exports = styleButtonByClass;
+
 document.addEventListener("DOMContentLoaded", () => {
     styleButtonByClass("main", "primary");
 });
