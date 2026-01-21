@@ -1,6 +1,3 @@
-function applyButtonStyle() {
-}
-
 async function styleButtonByClass(name, type) {
     try{
         const response = await fetch(`http://localhost:3000/button-${type}`);
