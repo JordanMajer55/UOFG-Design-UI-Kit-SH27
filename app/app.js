@@ -62,22 +62,26 @@ function getJson(filename) {
 app.get('/', function (req, res) {
     res.send({ "message": 'Hello World!' });
 });
-app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var json;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, getJson("./../figmaApi/initialisation/Button.json")];
-            case 1:
-                json = _a.sent();
-                if (json != null) {
-                    res.json(json);
-                }
-                else {
-                    res.status(500).json({ error: "Error Occured While While Fetching Data" });
-                }
-                return [2 /*return*/];
-        }
-    });
-}); });
+
+app.get('/button-primary', async (req, res) => {
+  const json = await getJson("./figmafiles/Button-Primary.json");
+
+  if (json != null) {
+    res.json(json);
+  } else {
+    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+  }
+});
+
+app.get('/button-secondary', async (req, res) => {
+  const json = await getJson("./figmafiles/Button-Secondary.json");
+
+  if (json != null) {
+    res.json(json);
+  } else {
+    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+  }
+});
+
 app.listen(port, function () {
 });

@@ -1,10 +1,20 @@
-const generateButtonToken = require("./initialisation/generateButtonTokens.js")
-require("dotenv").config();
-const fetch = require("node-fetch");
-const fs = require("fs");
+const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
 
 async function init() {
-    generateButtonToken("29:364", "Button-Primary");
+  const BUTTON_VARIANTS = [
+    {
+      name: "primary",
+      nodeId: "29:364",
+      fileName: "Button-Primary",
+    },
+    {
+      name: "secondary",
+      nodeId: "29:363",
+      fileName: "Button-Secondary",
+    },
+  ];
+
+  await generateButtonTokens(BUTTON_VARIANTS);
 }
 
 init();
