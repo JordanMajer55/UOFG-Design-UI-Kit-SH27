@@ -13,7 +13,7 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         team_id: process.env.TEAM_ID,
         passcode: 'Verified',
         //file_key: process.env.FILE_ID,
-        endpoint: 'https://yellow-dodo-11.loca.lt/updates', //our new webserver that figma can access - no longer http://localserver.....
+        endpoint: 'https://mean-webs-find.loca.lt/updates', //our new webserver that figma can access - no longer http://localserver.....
         description: 'Webhook to test implementation'
 
     })
