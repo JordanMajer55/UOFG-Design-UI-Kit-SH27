@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "outDir": "./dist",
     "declaration": true,
-    "noImplicitAny": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
