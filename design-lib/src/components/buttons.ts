@@ -1,4 +1,4 @@
-async function styleButtonByClass(name, type) {
+export async function styleButtonByClass(name:string, type:string) {
     try{
         const response = await fetch(`http://localhost:3000/button-${type}`);
         if (!response.ok) {
@@ -9,8 +9,7 @@ async function styleButtonByClass(name, type) {
         const fullData = await response.json();
         const data = fullData.button[type];
 
-        //console.log(data);
-        const btns = document.getElementsByClassName(`${name}`);
+        const btns = document.getElementsByClassName(`${name}`) as HTMLCollectionOf<HTMLElement>;
         Array.from(btns).forEach((btn) => {
             Object.assign(btn.style, {
                 backgroundColor: data.backgroundColor,
@@ -31,9 +30,3 @@ async function styleButtonByClass(name, type) {
         console.error(err);
     }
 }
-
-module.exports = styleButtonByClass;
-
-document.addEventListener("DOMContentLoaded", () => {
-    styleButtonByClass("main", "primary");
-});
