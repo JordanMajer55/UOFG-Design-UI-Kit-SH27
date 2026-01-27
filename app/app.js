@@ -42,6 +42,7 @@ var port = 3000;
 var prefix = "./../figmafiles/";
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
+// function to read requested json file
 function getJson(filename) {
     return __awaiter(this, void 0, void 0, function () {
         var data, err_1;
@@ -49,7 +50,7 @@ function getJson(filename) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, fs.readFile(filename, 'utf8')];
+                    return [4 /*yield*/, fs.readFile(prefix + filename, 'utf8')];
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, JSON.parse(data)];
@@ -62,11 +63,12 @@ function getJson(filename) {
         });
     });
 }
+// end-point point for primary button
 app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var json;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getJson(prefix + "Button.json")];
+            case 0: return [4 /*yield*/, getJson("Button.json")];
             case 1:
                 json = _a.sent();
                 if (json != null) {

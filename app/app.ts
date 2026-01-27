@@ -6,9 +6,10 @@ const prefix = "./../figmafiles/";
 const cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 
+// function to read requested json file
 async function getJson(filename: string) {
     try {
-        const data = await fs.readFile(filename, 'utf8');
+        const data = await fs.readFile(prefix + filename, 'utf8');
         return JSON.parse(data);
     }
     catch (err) {
@@ -17,8 +18,9 @@ async function getJson(filename: string) {
     }
 }
 
+// end-point point for primary button
 app.get('/button-primary', async (req: any, res: any) => {
-    const json = await getJson(prefix + "Button.json")
+    const json = await getJson("Button.json")
     if (json != null) {
         res.json(json);
     }
