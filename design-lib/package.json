@@ -1,5 +1,5 @@
 {
-  "name": "design-lib",
+  "name": "@sh27/design-lib",
   "version": "0.1.0",
   "description": "Design token based styling library",
   "type": "module",
