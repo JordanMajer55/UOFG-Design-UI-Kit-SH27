@@ -1,4 +1,5 @@
 const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
+const generateSearchBoxTokens = require("./initialisation/generateSearchBoxTokens.js");
 
 async function init() {
   const BUTTON_VARIANTS = [
@@ -14,7 +15,16 @@ async function init() {
     },
   ];
 
+  const SEARCHBOX_VARIANTS = [
+    {
+      name: "default",
+      nodeId: "2719:7101",
+      fileName: "SearchBox-Default"
+    },
+  ];
+  
   await generateButtonTokens(BUTTON_VARIANTS);
+  await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
 }
 
 init();
