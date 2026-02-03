@@ -9,6 +9,7 @@ export async function styleButtonByClass(name:string, type:string) {
         const fullData = await response.json();
         const data = fullData.button[type];
 
+        // Creates a JSON to represent the button from figma
         const btns = document.getElementsByClassName(`${name}`) as HTMLCollectionOf<HTMLElement>;
         Array.from(btns).forEach((btn) => {
             Object.assign(btn.style, {
