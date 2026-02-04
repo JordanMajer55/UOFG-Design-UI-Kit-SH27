@@ -98,6 +98,57 @@ app.get('/button-primary', async (req, res) => {
     }
 })
 
+app.get('/searchbox', async (req, res) => {
+  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching SearchBox" });
+});
+
+// for display purposes (http://localhost:3000/preview/searchbox)
+app.get("/preview/searchbox", async (req, res) => {
+  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.searchBox.default;
+
+  res.send(`
+    <html>
+      <body style="font-family: system-ui; padding: 24px;">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="
+            width:${t.input.width}px;
+            height:${t.input.height}px;
+            background:${t.input.backgroundColor};
+            border:${t.input.borderWidth}px solid ${t.input.borderColor};
+            display:flex;
+            align-items:center;
+            padding:0 12px;
+            box-sizing:border-box;
+          ">
+            <span style="opacity:0.5;">Search…</span>
+          </div>
+
+          <button style="
+            height:${t.button.height}px;
+            background:${t.button.backgroundColor};
+            border:none;
+            border-radius:${t.button.borderRadius}px;
+            padding:${t.button.padding.top}px ${t.button.padding.right}px;
+            color:${t.button.textColor};
+            font-family:${t.button.typography?.fontFamily || "inherit"};
+            font-size:${t.button.typography?.fontSize}px;
+            line-height:${t.button.typography?.lineHeight}px;
+            font-weight:${t.button.typography?.fontWeight};
+            cursor:pointer;
+          ">
+            ${t.button.text || "Search"}
+          </button>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
 //Creating a webhook endpoint - receives updates at this endpoint
 app.post('/updates',(req,res) =>{
     console.log('Updating changes made ....');
