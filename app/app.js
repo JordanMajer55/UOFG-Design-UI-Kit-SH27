@@ -83,3 +83,92 @@ app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0,
 }); });
 app.listen(port, function () {
 });
+
+app.get('/button-secondary', async (req, res) => {
+  const json = await getJson("./figmafiles/Button-Secondary.json");
+
+  if (json != null) {
+    res.json(json);
+  } else {
+    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+  }
+});
+
+
+//endpoint for client to receive the json files - usually for a specific component
+app.get('/button-primary', async (req, res) => {
+    const json = await getJson("./../buttonTokens.json");
+    if (json != null) {
+        res.json(json);
+    }
+    else {
+        res.status(500).json({error: "Error Occured While While Fetching Data"});
+    }
+})
+
+app.get('/searchbox', async (req, res) => {
+  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching SearchBox" });
+});
+
+// for display purposes (http://localhost:3000/preview/searchbox)
+app.get("/preview/searchbox", async (req, res) => {
+  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.searchBox.default;
+
+  res.send(`
+    <html>
+      <body style="font-family: system-ui; padding: 24px;">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="
+            width:${t.input.width}px;
+            height:${t.input.height}px;
+            background:${t.input.backgroundColor};
+            border:${t.input.borderWidth}px solid ${t.input.borderColor};
+            display:flex;
+            align-items:center;
+            padding:0 12px;
+            box-sizing:border-box;
+          ">
+            <span style="opacity:0.5;">Search…</span>
+          </div>
+
+          <button style="
+            height:${t.button.height}px;
+            background:${t.button.backgroundColor};
+            border:none;
+            border-radius:${t.button.borderRadius}px;
+            padding:${t.button.padding.top}px ${t.button.padding.right}px;
+            color:${t.button.textColor};
+            font-family:${t.button.typography?.fontFamily || "inherit"};
+            font-size:${t.button.typography?.fontSize}px;
+            line-height:${t.button.typography?.lineHeight}px;
+            font-weight:${t.button.typography?.fontWeight};
+            cursor:pointer;
+          ">
+            ${t.button.text || "Search"}
+          </button>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
+//Creating a webhook endpoint - receives updates at this endpoint
+app.post('/updates',(req,res) =>{
+    console.log('Updating changes made ....');
+    console.log(req.body);
+    //whatever we decide to do with this data - put it in a new file 
+    // or update a curr ver
+    //extract whats needed and put through a generating token func
+    
+   
+    res.status(200);
+})
+
+app.listen(port, () => {
+    console.log(`This is the local webserver, running at http://localhost:${port}`);
+})

@@ -20,15 +20,23 @@ async function getJson(filename: string) {
 
 // end-point point for primary button
 app.get('/button-primary', async (req: any, res: any) => {
-    const json = await getJson("Button.json")
-    if (json != null) {
-        res.json(json);
-    }
-    else {
-        res.status(500).json({error: "Error Occured While While Fetching Data"});
-    }
-})
+  const json = await getJson("./figmafiles/Button-Primary.json");
+  if (json != null) {
+    res.json(json);
+  } else {
+    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+  }
+});
+
+app.get('/button-secondary', async (req: any, res: any) => {
+  const json = await getJson("./figmafiles/Button-Secondary.json");
+  if (json != null) {
+    res.json(json);
+  } else {
+    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+  }
+});
 
 app.listen(port, () => {
 
-})
+});

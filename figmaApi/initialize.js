@@ -1,10 +1,30 @@
-const generateButtonToken = require("./initialisation/generateButtonTokens.js")
-require("dotenv").config();
-const fetch = require("node-fetch");
-const fs = require("fs");
+const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
+const generateSearchBoxTokens = require("./initialisation/generateSearchBoxTokens.js");
 
 async function init() {
-    generateButtonToken("29:364", "Button");
+  const BUTTON_VARIANTS = [
+    {
+      name: "primary",
+      nodeId: "29:364",
+      fileName: "Button-Primary",
+    },
+    {
+      name: "secondary",
+      nodeId: "29:363",
+      fileName: "Button-Secondary",
+    },
+  ];
+
+  const SEARCHBOX_VARIANTS = [
+    {
+      name: "default",
+      nodeId: "2719:7101",
+      fileName: "SearchBox-Default"
+    },
+  ];
+  
+  await generateButtonTokens(BUTTON_VARIANTS);
+  await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
 }
 
 init();
