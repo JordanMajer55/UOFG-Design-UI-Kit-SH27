@@ -23,7 +23,7 @@ async function init() {
     },
   ];
 
-  const TABS = [
+  const TABS_VARIANTS = [
     {
       name: "default",
       nodeId: "32:1306",
