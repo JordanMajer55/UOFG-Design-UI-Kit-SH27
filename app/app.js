@@ -34,12 +34,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+const path = require("path");
 var _this = this;
 var express = require('express');
 var app = express();
 var fs = require("fs/promises");
 var port = 3000;
-var prefix = "./../figmafiles/";
+var prefix = path.join(__dirname, "..", "figmafiles");
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 // function to read requested json file
@@ -50,7 +51,7 @@ function getJson(filename) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, fs.readFile(prefix + filename, 'utf8')];
+                    return [4 /*yield*/, fs.readFile(path.join(prefix, filename), "utf8")];
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, JSON.parse(data)];
@@ -81,11 +82,9 @@ app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0,
         }
     });
 }); });
-app.listen(port, function () {
-});
 
 app.get('/button-secondary', async (req, res) => {
-  const json = await getJson("./figmafiles/Button-Secondary.json");
+  const json = await getJson("Button-Secondary.json");
 
   if (json != null) {
     res.json(json);
@@ -107,14 +106,14 @@ app.get('/button-primary', async (req, res) => {
 })
 
 app.get('/searchbox', async (req, res) => {
-  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  const json = await getJson("SearchBox-Default.json");
   if (json) res.json(json);
   else res.status(500).json({ error: "Error fetching SearchBox" });
 });
 
 // for display purposes (http://localhost:3000/preview/searchbox)
 app.get("/preview/searchbox", async (req, res) => {
-  const json = await getJson("./figmafiles/SearchBox-Default.json");
+  const json = await getJson("SearchBox-Default.json")
   if (!json) return res.status(500).send("No tokens");
 
   const t = json.searchBox.default;
