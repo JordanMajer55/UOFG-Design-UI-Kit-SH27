@@ -1,5 +1,6 @@
 const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
 const generateSearchBoxTokens = require("./initialisation/generateSearchBoxTokens.js");
+const generateTabsTokens = require("./initialisation/generateTabsTokens.js");
 
 async function init() {
   const BUTTON_VARIANTS = [
@@ -33,6 +34,7 @@ async function init() {
   
   await generateButtonTokens(BUTTON_VARIANTS);
   await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
+  await generateTabsTokens(TABS_VARIANTS);
 }
 
 init();

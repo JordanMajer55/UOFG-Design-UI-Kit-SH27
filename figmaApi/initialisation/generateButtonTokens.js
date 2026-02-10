@@ -51,7 +51,7 @@ async function generateButtonTokens(variants) {
       },
     };
 
-    const outputPath = `./figmafiles/${variant.fileName}.json`;
+    const outputPath = `./../figmafiles/${variant.fileName}.json`;
 
     fs.writeFileSync(outputPath, JSON.stringify(tokens, null, 2));
     console.log(` Tokens written to ${outputPath}`);
