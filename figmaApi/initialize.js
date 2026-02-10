@@ -27,7 +27,7 @@ async function init() {
     {
       name: "default",
       nodeId: "32:1306",
-      fileName: "SearchBox-Default"
+      fileName: "Tabs-Default"
     },
   ];
   
