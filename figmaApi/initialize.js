@@ -22,6 +22,14 @@ async function init() {
       fileName: "SearchBox-Default"
     },
   ];
+
+  const TABS = [
+    {
+      name: "default",
+      nodeId: "32:1306",
+      fileName: "SearchBox-Default"
+    },
+  ];
   
   await generateButtonTokens(BUTTON_VARIANTS);
   await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
