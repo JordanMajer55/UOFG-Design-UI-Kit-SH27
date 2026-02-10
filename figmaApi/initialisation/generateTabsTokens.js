@@ -2,6 +2,13 @@
 const fs = require("fs");
 const fetchNode = require("./figmaGetNode.js");
 
+function rgbaToCss(color) {
+    const r = Math.round((color?.r ?? 0) * 255);
+    const g = Math.round((color?.g ?? 0) * 255);
+    const b = Math.round((color?.b ?? 0) * 255);
+    const a = color?.a ?? 1;
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
 
 
 async function generateTabsTokens(variants) {
@@ -24,3 +31,5 @@ async function generateTabsTokens(variants) {
         console.log(`Tokens written to ${outputPath}`);
     }
 }
+
+module.exports = generateTabsTokens;
