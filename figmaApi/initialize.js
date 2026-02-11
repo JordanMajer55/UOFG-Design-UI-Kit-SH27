@@ -1,5 +1,8 @@
 const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
 const generateSearchBoxTokens = require("./initialisation/generateSearchBoxTokens.js");
+const generateLogoTokens = require("./initialisation/generateLogoTokens.js");
+const generateHeaderTokens = require("./initialisation/generateHeaderTokens.js");
+const generateBreadcrumbTokens = require("./initialisation/generateBreadcrumbTokens.js");
 
 async function init() {
   const BUTTON_VARIANTS = [
@@ -12,19 +15,39 @@ async function init() {
       name: "secondary",
       nodeId: "29:363",
       fileName: "Button-Secondary",
-    },
-  ];
-
-  const SEARCHBOX_VARIANTS = [
+    }, 
+   ];
+  
+   const SEARCHBOX_VARIANTS = [
     {
       name: "default",
       nodeId: "2719:7101",
       fileName: "SearchBox-Default"
     },
   ];
-  
+  const LOGO_VARIANRS = [
+    {
+    name: "default",
+    nodeId: "507:13576",
+    fileName: "Logo-Default"
+    },
+  ];
+
+  const HEADER_VARIANTS = [
+  { nodeId: "505:5793", 
+    fileName: "Header" },
+];
+
+const BREADCRUMB_VARIANTS = [
+  { nodeId: "507:13549", 
+    fileName: "Breadcrumb"
+   },
+];
+
   await generateButtonTokens(BUTTON_VARIANTS);
   await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
+  await generateLogoTokens(LOGO_VARIANRS);
+  await generateHeaderTokens(HEADER_VARIANTS);
+  await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
 }
-
 init();
