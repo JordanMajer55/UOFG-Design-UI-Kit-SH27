@@ -156,6 +156,75 @@ app.get("/preview/searchbox", async (req, res) => {
   `);
 });
 
+// for display purposes (http://localhost:3000/preview/phasebanner-beta)
+app.get("/phasebanner-beta", async (req, res) => {
+  const json = await getJson("PhaseBanner-Beta.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
+});
+
+app.get("/preview/phasebanner-beta", async (req, res) => {
+  const json = await getJson("PhaseBanner-Beta.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.phaseBanner.beta;
+
+  res.send(`
+    <html>
+      <body style="font-family: system-ui; padding: 24px;">
+        <div style="
+          width:${t.container.width || 738}px;
+          height:${t.container.height || 60}px;
+          box-sizing:border-box;
+
+          display:flex;
+          align-items:center;
+          gap:${t.container.gap || 0}px;
+
+          background:${t.container.backgroundColor};
+          padding:${t.container.padding.top || 0}px ${t.container.padding.right || 0}px ${t.container.padding.bottom || 0}px ${t.container.padding.left || 0}px;
+        ">
+          <span style="
+            display:inline-flex;
+            align-items:center;
+            box-sizing:border-box;
+
+            background:${t.tag?.backgroundColor || "#003865"};
+            color:${t.tag?.textColor || "#fff"};
+
+            padding:${t.tag?.padding.top || 6}px ${t.tag?.padding.right || 12}px ${t.tag?.padding.bottom || 6}px ${t.tag?.padding.left || 12}px;
+
+            font-family:${t.tag?.typography?.fontFamily || "inherit"};
+            font-size:${t.tag?.typography?.fontSize || 16}px;
+            line-height:${t.tag?.typography?.lineHeight || 20}px;
+            font-weight:${t.tag?.typography?.fontWeight || 600};
+            white-space:nowrap;
+          ">
+            ${t.tag?.text || "Beta"}
+          </span>
+
+          <span style="
+            box-sizing:border-box;
+            color:${t.message?.color || "#000"};
+
+            font-family:${t.message?.typography?.fontFamily || "inherit"};
+            font-size:${t.message?.typography?.fontSize || 16}px;
+            line-height:${t.message?.typography?.lineHeight || 24}px;
+            font-weight:${t.message?.typography?.fontWeight || 400};
+
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+          ">
+            ${t.message?.text || ""}
+          </span>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
+
 //Creating a webhook endpoint - receives updates at this endpoint
 app.post('/updates',(req,res) =>{
     console.log('Updating changes made ....');
