@@ -4,7 +4,7 @@ require("dotenv").config();
 
 
 const FILE_ID = "ZOFT3XTYEsdMVK3zkQ0PI9";// this needs to be moved to an env
-const FIGMA_TOKEN = "figd_Ty_i5dcYuHu8vpTp2anuiddXKRTt4z15_tKvDBB5";
+
 
 function findNodeById(node, targetId){
   if (node.id == targetId) return node;
