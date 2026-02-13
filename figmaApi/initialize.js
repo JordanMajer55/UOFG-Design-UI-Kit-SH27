@@ -45,9 +45,9 @@ const BREADCRUMB_VARIANTS = [
 ];
 
   await generateButtonTokens(BUTTON_VARIANTS);
-  await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
-  await generateLogoTokens(LOGO_VARIANRS);
-  await generateHeaderTokens(HEADER_VARIANTS);
-  await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
+  //await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
+  //await generateLogoTokens(LOGO_VARIANRS);
+  //await generateHeaderTokens(HEADER_VARIANTS);
+  //await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
 }
 init();

@@ -1,21 +1,30 @@
 //file that fetches node from figma, then exports it to a "generate*Token" file
+const { readFileSync } = require("node:fs");
 require("dotenv").config();
 
-const FILE_ID = "ZOFT3XTYEsdMVK3zkQ0PI9";
 
-async function fetchNode(nodeId) {
-  const url =
-    `https://api.figma.com/v1/files/${FILE_ID}/nodes?ids=${nodeId}`;
+const FILE_ID = "ZOFT3XTYEsdMVK3zkQ0PI9";// this needs to be moved to an env
+const FIGMA_TOKEN = "figd_Ty_i5dcYuHu8vpTp2anuiddXKRTt4z15_tKvDBB5";
 
-  const fetch = (...args) =>
-  import("node-fetch").then(({ default: f }) => f(...args));
-
-  const res = await fetch(url, {
-    headers: { "X-Figma-Token": process.env.FIGMA_TOKEN }
-  });
-
-  const json = await res.json();
-  return json;
+function findNodeById(node, targetId){
+  if (node.id == targetId) return node;
+  if (node.children){
+    for(const child of node.children){
+      const found = findNodeById(child, targetId);
+      if(found) return found;
+    }
+  }
+  return null;
 }
 
+
+async function fetchNode(nodeId) {
+  const fileData = JSON.parse(readFileSync("./fullFile.json"))
+  const node = findNodeById(fileData.document, nodeId)
+
+  const json = { nodes: { [nodeId]: {document:node} } };
+  console.log(json);
+  return json;
+}
+fetchNode("29:364")
 module.exports = fetchNode;
