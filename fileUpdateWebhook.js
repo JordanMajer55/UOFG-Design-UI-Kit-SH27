@@ -15,7 +15,7 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         file_key: process.env.FILE_ID,
         file_name: 'UofG Component library - CS (Copy)',
         endpoint: 'https://fe-unfilterable-barabara.ngrok-free.dev//updates', //our new webserver that figma can access - no longer http://localserver.....
-        description: 'Webhook to test file_updates'
+        description: 'Webhook to notify for file_updates'
 
     })
     
