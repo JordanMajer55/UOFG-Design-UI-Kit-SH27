@@ -11,10 +11,6 @@ function rgbaToCss(color) {
     return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
 
-function extractTabsToken(component) {
-    
-}
-
 async function generateTabsTokens(variants) {
     for (const variant of variants) {
         var file = require("./fullFile.json");
@@ -25,8 +21,41 @@ async function generateTabsTokens(variants) {
         }
 
         const tokens = {
-            tabs: {
-                [variant.name]: component,
+            [variant.name]: {
+                "tabs": {
+                    "layout": component.layoutMode,
+                    "height": component.absoluteBoundingBox.height,
+                    "bottomBorderColour": component.strokes[0].color,
+                    "BottomBorderWeight": component.individualStrokeWeights.bottom,
+                },
+                "container": {
+                    "layout": component.children[0].layoutMode,
+                    "itemSpacing": component.children[0].itemSpacing,
+                    "height": component.children[0].absoluteBoundingBox.height,
+                    "layoutWrap": component.children[0].layoutWrap,
+                },
+                "defaultButton": {
+                    "paddingTop": component.children[0].children[0].paddingTop,
+                    "paddingBottom": component.children[0].children[0].paddingBottom,
+                    "width": component.children[0].children[0].absoluteBoundingBox.width,
+                    "height": component.children[0].children[0].absoluteBoundingBox.height,
+                    "strokeWeight": component.children[0].children[0].strokeWeight,
+                    "textStyle": {
+                        "fontFamily": component.children[0].children[0].children[0].style.fontFamily,
+                        "fontWeight": component.children[0].children[0].children[0].style.fontWeight,
+                        "fontSize": component.children[0].children[0].children[0].style.fontSize,
+                        "lineHeight": component.children[0].children[0].children[0].style.lineHeightPx,
+                        "textColour": component.children[0].children[0].children[0].fills[0].color,
+                    }
+                },
+                "activeButton": {
+                    "strokeWeightBottom": component.children[0].children[2].individualStrokeWeights.bottom,
+                    "strokeColour": component.children[0].children[2].color,
+                    "textStyle": {
+                        "fontweight": component.children[0].children[2].children[0].style.fontWeight,
+                        "textColour": component.children[0].children[2].children[0].fills[0].color,
+                    }
+                },
             },
         };
 
