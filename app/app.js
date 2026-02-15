@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -65,32 +65,34 @@ function getJson(filename) {
     });
 }
 // end-point point for primary button
-app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var json;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, getJson("Button.json")];
-            case 1:
-                json = _a.sent();
-                if (json != null) {
-                    res.json(json);
-                }
-                else {
-                    res.status(500).json({ error: "Error Occured While While Fetching Data" });
-                }
-                return [2 /*return*/];
-        }
+app.get('/button-primary', function (req, res) {
+    return __awaiter(_this, void 0, void 0, function () {
+        var json;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, getJson("Button.json")];
+                case 1:
+                    json = _a.sent();
+                    if (json != null) {
+                        res.json(json);
+                    }
+                    else {
+                        res.status(500).json({ error: "Error Occured While While Fetching Data" });
+                    }
+                    return [2 /*return*/];
+            }
+        });
     });
-}); });
+});
 
 app.get('/button-secondary', async (req, res) => {
-  const json = await getJson("Button-Secondary.json");
+    const json = await getJson("Button-Secondary.json");
 
-  if (json != null) {
-    res.json(json);
-  } else {
-    res.status(500).json({ error: "Error Occured While While Fetching Data" });
-  }
+    if (json != null) {
+        res.json(json);
+    } else {
+        res.status(500).json({ error: "Error Occured While While Fetching Data" });
+    }
 });
 
 
@@ -101,24 +103,24 @@ app.get('/button-primary', async (req, res) => {
         res.json(json);
     }
     else {
-        res.status(500).json({error: "Error Occured While While Fetching Data"});
+        res.status(500).json({ error: "Error Occured While While Fetching Data" });
     }
 })
 
 app.get('/searchbox', async (req, res) => {
-  const json = await getJson("SearchBox-Default.json");
-  if (json) res.json(json);
-  else res.status(500).json({ error: "Error fetching SearchBox" });
+    const json = await getJson("SearchBox-Default.json");
+    if (json) res.json(json);
+    else res.status(500).json({ error: "Error fetching SearchBox" });
 });
 
 // for display purposes (http://localhost:3000/preview/searchbox)
 app.get("/preview/searchbox", async (req, res) => {
-  const json = await getJson("SearchBox-Default.json")
-  if (!json) return res.status(500).send("No tokens");
+    const json = await getJson("SearchBox-Default.json")
+    if (!json) return res.status(500).send("No tokens");
 
-  const t = json.searchBox.default;
+    const t = json.searchBox.default;
 
-  res.send(`
+    res.send(`
     <html>
       <body style="font-family: system-ui; padding: 24px;">
         <div style="display:flex; gap:12px; align-items:center;">
@@ -158,18 +160,18 @@ app.get("/preview/searchbox", async (req, res) => {
 
 // for display purposes (http://localhost:3000/preview/phasebanner-beta)
 app.get("/phasebanner-beta", async (req, res) => {
-  const json = await getJson("PhaseBanner-Beta.json");
-  if (json) res.json(json);
-  else res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
+    const json = await getJson("PhaseBanner-Beta.json");
+    if (json) res.json(json);
+    else res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
 });
 
 app.get("/preview/phasebanner-beta", async (req, res) => {
-  const json = await getJson("PhaseBanner-Beta.json");
-  if (!json) return res.status(500).send("No tokens");
+    const json = await getJson("PhaseBanner-Beta.json");
+    if (!json) return res.status(500).send("No tokens");
 
-  const t = json.phaseBanner.beta;
+    const t = json.phaseBanner.beta;
 
-  res.send(`
+    res.send(`
     <html>
       <body style="font-family: system-ui; padding: 24px;">
         <div style="
@@ -224,16 +226,143 @@ app.get("/preview/phasebanner-beta", async (req, res) => {
   `);
 });
 
+app.get("/preview/blockquote", async (req, res) => {
+    const json = await getJson("Blockquote.json");
+    if (!json) return res.status(500).send("No tokens");
+
+    const t = json.blockquote.default;
+
+    res.send(`
+    <html>
+      <body style="font-family: system-ui; padding: 40px;">
+        <div style="
+  position: relative;
+  width:${t.container.width}px;
+  box-sizing:border-box;
+  padding-top: 0px;
+">
+
+  <div style="
+    position:absolute;
+    top:0;
+    left:0;
+    color:${t.icon.color};
+    font-size:60px;
+    line-height:1;
+  ">❝</div>
+
+  <div style="
+    padding-left:${(t.icon.width ?? 40) + (t.container.gap ?? 18)}px;
+    color:${t.text.color};
+    font-family:${t.text.typography.fontFamily};
+    font-size:${t.text.typography.fontSize}px;
+    line-height:${t.text.typography.lineHeight}px;
+    font-weight:${t.text.typography.fontWeight};
+    letter-spacing:${t.text.typography.letterSpacing}px;
+  ">
+    ${t.text.text}
+  </div>
+
+</div>
+      </body>
+    </html>
+  `);
+});
+
+app.get("/preview/downloadlink", async (req, res) => {
+  const json = await getJson("DownloadLink-Default.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.downloadLink.default;
+
+  res.send(`
+    <html>
+      <body style="font-family: system-ui; padding:40px; background:#fff;">
+        <div style="
+          width:${t.container.width || 744}px;
+          height:${t.container.height || 97}px;
+          background:${t.container.backgroundColor || "#f2f2f2"};
+          display:flex;
+          align-items:center;
+          box-sizing:border-box;
+          overflow:hidden;
+        ">
+
+          <!-- Left accent bar -->
+          <div style="
+            width:${t.accentBar?.width || 4}px;
+            height:100%;
+            background:${t.accentBar?.color || "#003865"};
+            flex:0 0 auto;
+          "></div>
+
+          <!-- Text block -->
+          <div style="
+            flex:1;
+            padding:16px 24px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            gap:4px;
+          ">
+            <div style="
+              color:${t.title?.color || "#333"};
+              font-family:${t.title?.typography?.fontFamily || "inherit"};
+              font-size:${t.title?.typography?.fontSize || 21}px;
+              line-height:${t.title?.typography?.lineHeight || 26}px;
+              font-weight:${t.title?.typography?.fontWeight || 400};
+            ">
+              ${t.title?.text || "Document title"}
+            </div>
+
+            <div style="
+              color:${t.meta?.color || "#666"};
+              font-family:${t.meta?.typography?.fontFamily || "inherit"};
+              font-size:${t.meta?.typography?.fontSize || 16}px;
+              line-height:${t.meta?.typography?.lineHeight || 21}px;
+              font-weight:${t.meta?.typography?.fontWeight || 400};
+            ">
+              ${t.meta?.text || "PDF | 545K"}
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div style="
+            width:1px;
+            height:${t.divider?.height || 49}px;
+            background:${t.divider?.color || "#ccc"};
+            margin-right:18px;
+          "></div>
+
+          <!-- Icon -->
+          <div style="
+            width:64px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:${t.icon?.color || "#9A3A06"};
+            font-size:${Math.max(16, t.icon?.height || 24)}px;
+            margin-right:12px;
+          ">
+            ↓
+          </div>
+
+        </div>
+      </body>
+    </html>
+  `);
+});
+
 
 //Creating a webhook endpoint - receives updates at this endpoint
-app.post('/updates',(req,res) =>{
+app.post('/updates', (req, res) => {
     console.log('Updating changes made ....');
     console.log(req.body);
     //whatever we decide to do with this data - put it in a new file 
     // or update a curr ver
     //extract whats needed and put through a generating token func
-    
-   
+
+
     res.status(200);
 })
 
