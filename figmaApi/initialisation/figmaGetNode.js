@@ -19,7 +19,7 @@ function findNodeById(node, targetId){
 
 
 async function fetchNode(nodeId) {
-  const fileData = JSON.parse(readFileSync("./fullFile.json"))
+  const fileData = JSON.parse(readFileSync("./initialisation/fullFile.json"))
   const node = findNodeById(fileData.document, nodeId)
 
   const json = { nodes: { [nodeId]: {document:node} } };
