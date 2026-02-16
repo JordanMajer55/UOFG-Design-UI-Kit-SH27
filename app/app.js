@@ -40,7 +40,7 @@ var express = require('express');
 var app = express();
 var fs = require("fs/promises");
 var port = 3000;
-var prefix = path.join(__dirname, "..", "figmafiles");
+var prefix = path.join(__dirname, "..", "figmafiles") + path.sep;
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 // function to read requested json file
@@ -86,7 +86,7 @@ app.get('/button-primary', function (req, res) {
 });
 
 app.get('/button-secondary', async (req, res) => {
-    const json = await getJson("Button-Secondary.json");
+  const json = await getJson("Button-Secondary.json");
 
     if (json != null) {
         res.json(json);
@@ -98,7 +98,7 @@ app.get('/button-secondary', async (req, res) => {
 
 //endpoint for client to receive the json files - usually for a specific component
 app.get('/button-primary', async (req, res) => {
-    const json = await getJson("./../buttonTokens.json");
+    const json = await getJson("buttonTokens.json");
     if (json != null) {
         res.json(json);
     }
@@ -113,10 +113,28 @@ app.get('/searchbox', async (req, res) => {
     else res.status(500).json({ error: "Error fetching SearchBox" });
 });
 
+app.get('/uog-logo', async (req, res) => {
+  const json = await getJson("Logo-Default.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching UoG Logo" });
+});
+
+app.get('/header-text', async (req, res) => {
+  const json = await getJson("Header.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching Header" });
+});
+
+app.get('/breadcrumb', async (req, res) => {
+  const json = await getJson("Breadcrumb.json");
+  if (json) res.json(json);
+  else res.status(500).json({ error: "Error fetching Breadcrumb" });
+});
+
 // for display purposes (http://localhost:3000/preview/searchbox)
 app.get("/preview/searchbox", async (req, res) => {
-    const json = await getJson("SearchBox-Default.json")
-    if (!json) return res.status(500).send("No tokens");
+  const json = await getJson("SearchBox-Default.json");
+  if (!json) return res.status(500).send("No tokens");
 
     const t = json.searchBox.default;
 
@@ -349,10 +367,90 @@ app.get("/preview/downloadlink", async (req, res) => {
 
         </div>
       </body>
+      </html>
+  `);
+});
+
+// for display purposes (http://localhost:3000/preview/header)
+app.get("/preview/header", async (req, res) => {
+  const json = await getJson("Header.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.header;
+  const items = Array.isArray(t?.items) && t.items.length
+    ? t.items
+    : (t?.text ? [t.text] : []);
+
+  res.send(`
+    <html>
+    <body style="font-family: system-ui; padding: 24px;">
+      <div style="
+        display:flex;
+        align-items:center;
+        gap:24px;
+        font-family:${t?.typography?.fontFamily || "inherit"};
+        font-size:${t?.typography?.fontSize ?? 16}px;
+        font-weight:${t?.typography?.fontWeight ?? 400};
+        line-height:${t?.typography?.lineHeightPx ?? 20}px;
+        letter-spacing:${t?.typography?.letterSpacing ?? 0}px;
+        color:${t?.color ?? "inherit"};
+      ">
+        ${items.map((item) => `<span>${item}</span>`).join("")}
+      </div>
+    </body>
     </html>
   `);
 });
 
+// for display purposes (http://localhost:3000/preview/logo)
+app.get("/preview/logo", async (req, res) => {
+  const json = await getJson("Logo-Default.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.uogLogo;
+
+  res.send(`
+    <html>
+      <body style="font-family: system-ui; padding: 24px;">
+        <img src="${t?.pngUrl || ""}" style="display:block;" />
+      </body>
+    </html>
+  `);
+});
+
+// for display purposes (http://localhost:3000/preview/breadcrumb)
+app.get("/preview/breadcrumb", async (req, res) => {
+  const json = await getJson("Breadcrumb.json");
+  if (!json) return res.status(500).send("No tokens");
+
+  const t = json.breadcrumb;
+  const items = Array.isArray(t?.items) && t.items.length ? t.items : [];
+
+  res.send(`
+    <html>
+    <body style="font-family: system-ui; padding: 24px;">
+      <div style="
+        display:flex;
+        align-items:center;
+        gap:${t?.itemSpacing ?? 12}px;
+        padding:${t?.paddingTop ?? 0}px ${t?.paddingRight ?? 0}px ${t?.paddingBottom ?? 0}px ${t?.paddingLeft ?? 0}px;
+        box-sizing:border-box;
+        font-family:${t?.typography?.fontFamily || "inherit"};
+        font-size:${t?.typography?.fontSize ?? 16}px;
+        font-weight:${t?.typography?.fontWeight ?? 400};
+        line-height:${t?.typography?.lineHeightPx ?? 21}px;
+        letter-spacing:${t?.typography?.letterSpacing ?? 0}px;
+      ">
+        ${items.map((item, i) =>
+          i === 0
+            ? `<span>${item}</span>`
+            : `<span style="opacity:.5;">›</span><span>${item}</span>`
+        ).join("")}
+      </div>
+    </body>
+    </html>
+  `);
+});
 
 //Creating a webhook endpoint - receives updates at this endpoint
 app.post('/updates', (req, res) => {

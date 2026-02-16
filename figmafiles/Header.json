@@ -1,0 +1,28 @@
+{
+  "header": {
+    "text": "Item",
+    "typography": {
+      "fontFamily": "Swiss721 BT",
+      "fontWeight": 700,
+      "fontSize": 19,
+      "lineHeightPx": 24,
+      "letterSpacing": 0
+    },
+    "color": "rgba(0, 0, 0, 1)",
+    "size": {
+      "width": 528,
+      "height": 24
+    },
+    "items": [
+      "Item",
+      "Item",
+      "Item",
+      "Item",
+      "Item",
+      "Item",
+      "Item",
+      "Item",
+      "Item"
+    ]
+  }
+}

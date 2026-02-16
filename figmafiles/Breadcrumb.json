@@ -1,0 +1,26 @@
+{
+  "breadcrumb": {
+    "items": [
+      "Home",
+      "Item one",
+      "MyGlasgow",
+      "Archaeology Research"
+    ],
+    "typography": {
+      "fontFamily": "Swiss721 BT",
+      "fontWeight": 400,
+      "fontSize": 16,
+      "lineHeightPx": 21,
+      "letterSpacing": 0
+    },
+    "itemSpacing": 12,
+    "paddingTop": null,
+    "paddingRight": null,
+    "paddingBottom": null,
+    "paddingLeft": null,
+    "size": {
+      "width": 135.5,
+      "height": 21
+    }
+  }
+}
