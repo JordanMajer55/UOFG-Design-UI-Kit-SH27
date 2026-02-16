@@ -1,12 +1,12 @@
 // Function that searches through the full file json recursively to find a path to a node id
-function findNodeById(node, targetId, path = "document") {
+function findNodeById(node, targetId) {
   if (node.id === targetId) {
-    return path;
+    return node;
   }
 
   if (node.children) {
-    for (let i = 0; i < node.children.length; i++) {
-      const result = findNodeById(node.children[i], targetId, `${path}.children[${i}]`);
+    for (const child of node.children) {
+      const result = findNodeById(child, targetId);
 
       if (result) {
         return result;

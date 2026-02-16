@@ -5,6 +5,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
+    "node": "^25.6.1",
     "node-fetch": "^3.3.2"
   },
   "description": "This project's aim is to find a way to be able to develop a consistent way of delivering the University of Glasgow's Design System to all of the disparate (dissimilar) platforms out there.",

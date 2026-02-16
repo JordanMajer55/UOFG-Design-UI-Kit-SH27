@@ -1,4 +1,4 @@
-//initialising a webhook 
+//setting up a file update webhook 
 
 require("dotenv").config();
 
@@ -9,12 +9,13 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         'X-Figma-Token': process.env.FIGMA_TOKEN,
     },
     body:JSON.stringify({
-        event_type: 'PING', //just a PING event so this just initialises it - will create another issue to let it log file updates later
+        event_type: 'FILE_UPDATE', 
         team_id: process.env.TEAM_ID,
         passcode: 'Verified',
-        //file_key: process.env.FILE_ID,
-        endpoint: 'https://mean-webs-find.loca.lt/updates', //our new webserver that figma can access - no longer http://localserver.....
-        description: 'Webhook to test implementation'
+        file_key: process.env.FILE_ID,
+        file_name: 'UofG Component library - CS (Copy)',
+        endpoint: 'https://fe-unfilterable-barabara.ngrok-free.dev//updates', //our new webserver that figma can access - no longer http://localserver.....
+        description: 'Webhook to notify for file_updates'
 
     })
     
