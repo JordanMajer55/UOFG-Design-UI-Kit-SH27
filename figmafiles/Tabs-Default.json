@@ -1,0 +1,52 @@
+{
+  "default": {
+    "tabs": {
+      "layout": "HORIZONTAL",
+      "height": 48,
+      "bottomBorderColour": {
+        "r": 0.7019608020782471,
+        "g": 0.7019608020782471,
+        "b": 0.7019608020782471,
+        "a": 1
+      },
+      "BottomBorderWeight": 1
+    },
+    "container": {
+      "layout": "HORIZONTAL",
+      "itemSpacing": 24,
+      "height": 48,
+      "layoutWrap": "NO_WRAP"
+    },
+    "defaultButton": {
+      "paddingTop": 12,
+      "paddingBottom": 12,
+      "width": 86,
+      "height": 48,
+      "strokeWeight": 0,
+      "textStyle": {
+        "fontFamily": "Swis721 BT",
+        "fontWeight": 400,
+        "fontSize": 19,
+        "lineHeight": 24,
+        "textColour": {
+          "r": 0.3019607961177826,
+          "g": 0.3019607961177826,
+          "b": 0.3019607961177826,
+          "a": 1
+        }
+      }
+    },
+    "activeButton": {
+      "strokeWeightBottom": 3,
+      "textStyle": {
+        "fontweight": 700,
+        "textColour": {
+          "r": 0,
+          "g": 0.21960784494876862,
+          "b": 0.3960784375667572,
+          "a": 1
+        }
+      }
+    }
+  }
+}
