@@ -1,0 +1,47 @@
+{
+  "phaseBanner": {
+    "beta": {
+      "container": {
+        "backgroundColor": "rgba(230, 235, 240, 1)",
+        "padding": {
+          "top": 12,
+          "right": 24,
+          "bottom": 12,
+          "left": 24
+        },
+        "width": 738,
+        "height": 60,
+        "gap": 33
+      },
+      "tag": {
+        "text": "Beta",
+        "backgroundColor": "rgba(0, 56, 101, 1)",
+        "textColor": "rgba(255, 255, 255, 1)",
+        "typography": {
+          "fontFamily": "Swis721 BT",
+          "fontWeight": 700,
+          "fontSize": 19,
+          "lineHeight": 24,
+          "letterSpacing": 0
+        },
+        "padding": {
+          "top": 6,
+          "right": 12,
+          "bottom": 6,
+          "left": 12
+        }
+      },
+      "message": {
+        "text": "This is a new service. Your feedback will help us to improve it.",
+        "color": "rgba(50, 50, 50, 1)",
+        "typography": {
+          "fontFamily": "Swiss721 BT",
+          "fontWeight": 400,
+          "fontSize": 19,
+          "lineHeight": 24,
+          "letterSpacing": 0
+        }
+      }
+    }
+  }
+}

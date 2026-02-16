@@ -1,0 +1,55 @@
+{
+  "downloadLink": {
+    "default": {
+      "container": {
+        "backgroundColor": "rgba(245, 245, 245, 1)",
+        "width": 744,
+        "height": 97,
+        "padding": {
+          "top": 24,
+          "right": 24,
+          "bottom": 24,
+          "left": 24
+        },
+        "gap": 544
+      },
+      "accentBar": {
+        "color": "rgba(0, 56, 101, 1)",
+        "width": 3,
+        "height": 97
+      },
+      "title": {
+        "text": "Document title",
+        "color": "rgba(50, 50, 50, 1)",
+        "typography": {
+          "fontFamily": "Swiss721 BT",
+          "fontWeight": 400,
+          "fontSize": 21,
+          "lineHeight": 26,
+          "letterSpacing": 0
+        }
+      },
+      "meta": {
+        "text": "PDF  |  545K",
+        "color": "rgba(102, 102, 102, 1)",
+        "typography": {
+          "fontFamily": "Swiss721 BT",
+          "fontWeight": 400,
+          "fontSize": 16,
+          "lineHeight": 21,
+          "letterSpacing": 0
+        }
+      },
+      "divider": {
+        "color": "rgba(204, 204, 204, 1)",
+        "width": 1,
+        "height": 49
+      },
+      "icon": {
+        "color": "rgba(154, 58, 6, 1)",
+        "width": 21.000015258789062,
+        "height": 26.99850082397461
+      }
+    }
+  }
+}
