@@ -64,6 +64,31 @@ app.get('/breadcrumb', async (req: any, res: any) => {
   }
 });
 
+app.get('/searchbox', async (req: any, res: any) => {
+    const json = await getJson("SearchBox-Default.json");
+    if (json) res.json(json);
+    else res.status(500).json({ error: "Error fetching SearchBox" });
+});
+
+app.get("/phasebanner-beta", async (req: any, res: any) => {
+    const json = await getJson("PhaseBanner-Beta.json");
+    if (json) res.json(json);
+    else res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
+});
+
+app.get("/preview/blockquote", async (req: any, res: any) => {
+    const json = await getJson("Blockquote.json");
+    if (!json) res.json(json);
+    else res.status(500).json({ error: "Error fetching Blockquote" });
+});
+
+app.get("/preview/downloadlink", async (req: any, res: any) => {
+  const json = await getJson("DownloadLink-Default.json");
+  if (!json) res.json(json);
+  else res.status(500).json({ error: "Error fetching DownloadLink-Default" });
+
+});
+
 app.listen(port, () => {
 
 });
