@@ -1,0 +1,34 @@
+{
+  "blockquote": {
+    "default": {
+      "container": {
+        "backgroundColor": null,
+        "padding": {
+          "top": null,
+          "right": null,
+          "bottom": null,
+          "left": null
+        },
+        "gap": 18,
+        "width": 774,
+        "height": 216
+      },
+      "icon": {
+        "color": "rgba(154, 58, 6, 1)",
+        "width": 40,
+        "height": 32
+      },
+      "text": {
+        "text": "You’re going to have a thousand ideas trashed before you have one good one and if you can’t handle that then this is probably not the place for you",
+        "color": "rgba(0, 0, 0, 1)",
+        "typography": {
+          "fontFamily": "EB Garamond",
+          "fontWeight": 400,
+          "fontSize": 48,
+          "lineHeight": 54,
+          "letterSpacing": -0.72
+        }
+      }
+    }
+  }
+}
