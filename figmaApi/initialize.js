@@ -1,5 +1,6 @@
 const generateButtonTokens = require("./initialisation/generateButtonTokens.js");
 const generateSearchBoxTokens = require("./initialisation/generateSearchBoxTokens.js");
+const generateTabsTokens = require("./initialisation/generateTabsTokens.js");
 const generateLogoTokens = require("./initialisation/generateLogoTokens.js");
 const generateHeaderTokens = require("./initialisation/generateHeaderTokens.js");
 const generateBreadcrumbTokens = require("./initialisation/generateBreadcrumbTokens.js");
@@ -25,6 +26,18 @@ async function init() {
       fileName: "SearchBox-Default"
     },
   ];
+
+  const TABS_VARIANTS = [
+    {
+      name: "default",
+      position: "24",
+      canvas: "0",
+      frame: "9",
+      nodeId: "32:1306",
+      fileName: "Tabs-Default"
+    },
+  ];
+  
   const LOGO_VARIANRS = [
     {
     name: "default",
@@ -46,6 +59,7 @@ const BREADCRUMB_VARIANTS = [
 
   await generateButtonTokens(BUTTON_VARIANTS);
   await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
+  await generateTabsTokens(TABS_VARIANTS);
   await generateLogoTokens(LOGO_VARIANRS);
   await generateHeaderTokens(HEADER_VARIANTS);
   await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
