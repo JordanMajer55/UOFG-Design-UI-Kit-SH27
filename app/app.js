@@ -453,15 +453,16 @@ app.get("/preview/breadcrumb", async (req, res) => {
 });
 
 //Creating a webhook endpoint - receives updates at this endpoint
-app.post('/updates', (req, res) => {
+const init = require('../figmaApi/initialize')
+app.post('/updates',async (req,res) =>{
     console.log('Updating changes made ....');
-    console.log(req.body);
-    //whatever we decide to do with this data - put it in a new file 
-    // or update a curr ver
-    //extract whats needed and put through a generating token func
-
-
-    res.status(200);
+    const event = req.event;
+    if (event == 'FILE_UPDATE'){
+        res.sendStatus(200)
+        
+        await init();
+    }
+    
 })
 
 app.listen(port, () => {
