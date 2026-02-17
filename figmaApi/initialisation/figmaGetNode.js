@@ -17,5 +17,4 @@ async function fetchNode(nodeId) {
   console.log(json);
   return json;
 }
-fetchNode("29:364")
 module.exports = fetchNode;
