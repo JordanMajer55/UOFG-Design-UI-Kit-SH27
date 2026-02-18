@@ -13,8 +13,8 @@ function rgbaToCss(color) {
 
 async function generateTabsTokens(variants) {
     for (const variant of variants) {
-        var file = require("./fullFile.json");
-        const component = file.document.children[variant.position].children[variant.canvas].children[variant.frame];
+        const node = await fetchNode(variant.nodeId);
+        const component = node?.nodes?.[variant.nodeId]?.document;
 
         if (!component) {
             throw new Error(`No document found for nodeId=${variant.nodeId}`);
