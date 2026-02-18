@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import buttonPrimaryJson from "../../../../../figmafiles/Button-Primary.json";
+import buttonPrimaryJson from "../../../../../figmafiles/Button.json";
 import buttonSecondaryJson from "../../../../../figmafiles/Button-Secondary.json";
 
 interface Padding { top: number; right: number; bottom: number; left: number; }
