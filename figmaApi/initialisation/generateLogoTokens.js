@@ -19,7 +19,7 @@ async function generateLogoTokens(variants) {
   for (const v of variants) {
     const pngUrl = await fetchPngUrl(v.nodeId);
     const tokens = { uogLogo: { pngUrl, nodeId: v.nodeId } };
-    const out = `./figmafiles/${v.fileName}.json`;
+    const out = `./../figmafiles/${v.fileName}.json`;
     fs.writeFileSync(out, JSON.stringify(tokens, null, 2));
     console.log(`Tokens written to ${out}`);
   }
