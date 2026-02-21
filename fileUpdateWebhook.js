@@ -9,12 +9,12 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         'X-Figma-Token': process.env.FIGMA_TOKEN,
     },
     body:JSON.stringify({
-        event_type: 'FILE_UPDATE', 
+        event_type: 'FILE_VERSION_UPDATE', 
         team_id: process.env.TEAM_ID,
         passcode: 'Verified',
         file_key: process.env.FILE_ID,
         file_name: 'UofG Component library - CS (Copy)',
-        endpoint: 'https://fe-unfilterable-barabara.ngrok-free.dev//updates', //our new webserver that figma can access - no longer http://localserver.....
+        endpoint: 'https://fe-unfilterable-barabara.ngrok-free.dev/updates', //our new webserver that figma can access - no longer http://localserver.....
         description: 'Webhook to notify for file_updates'
 
     })
@@ -25,7 +25,7 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         console.log("Status:", res.status);
         return res.json();
     })
-    .then(data => console.log(data))
+    .then(data => console.log("Webhook created: ", data))
     .catch(err => console.error(err));
 
 
