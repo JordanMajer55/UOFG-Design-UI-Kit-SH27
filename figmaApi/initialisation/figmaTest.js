@@ -20,8 +20,9 @@ async function fetchFigmaFile() {
   const json = await res.json();
   console.log("SUCCESS! File name:", json.name);
 
-  fs.writeFileSync("fullFile.json", JSON.stringify(json, null, 2));
+  fs.writeFileSync("./../figmaApi/initialisation/fullFile.json", JSON.stringify(json, null, 2));
   
+  return 200;
 }
 
-fetchFigmaFile();
+module.exports = fetchFigmaFile;

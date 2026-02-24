@@ -461,16 +461,16 @@ app.get("/preview/breadcrumb", async (req, res) => {
 });
 
 //Creating a webhook endpoint - receives updates at this endpoint
-const fetchFigmaFile = require('../../figmaApi/initialisation/figmaTest')
-const init = require('../../figmaApi/initialize')
+const fetchFigmaFile = require('../figmaApi/initialisation/figmaTest')
+const init = require('../figmaApi/initialize')
 
 app.post('/updates',async (req,res) =>{
     res.sendStatus(200);
     console.log('Updating changes made ....');
     const {event_type} = req.body;
     if (event_type === 'FILE_VERSION_UPDATE'){
-        fetchFigmaFile();
-        init();
+        response = await fetchFigmaFile();
+        await init();
     }
     
 })

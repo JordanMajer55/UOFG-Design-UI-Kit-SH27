@@ -94,4 +94,5 @@ const BREADCRUMB_VARIANTS = [
   //await generateBlockquoteTokens(BLOCKQUOTE_VARIANTS);
   //await generateDownloadLinkTokens(DOWNLOAD_LINK_VARIANTS);
 }
-init();
+
+module.exports = init;
