@@ -1,8 +1,8 @@
 //setting up a file update webhook 
 
-require("dotenv").config();
+require('dotenv').config();
 
-fetch(`https://api.figma.com/v2/webhooks`, {
+fetch('https://api.figma.com/v2/webhooks', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -22,10 +22,10 @@ fetch(`https://api.figma.com/v2/webhooks`, {
 })
 //prints out the response Figma gives us 
     .then(res => {
-        console.log("Status:", res.status);
+        console.log('Status:', res.status);
         return res.json();
     })
-    .then(data => console.log("Webhook created: ", data))
+    .then(data => console.log('Webhook created: ', data))
     .catch(err => console.error(err));
 
 
