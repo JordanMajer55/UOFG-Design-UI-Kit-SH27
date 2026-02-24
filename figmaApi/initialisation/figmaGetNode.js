@@ -13,9 +13,6 @@ async function fetchNode(nodeId) {
 
   const json = { nodes: { [nodeId]: {document:component} } };
 
-  console.log("Fetched:", component.name);
-  console.log(json);
   return json;
 }
-fetchNode("29:364")
 module.exports = fetchNode;

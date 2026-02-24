@@ -43,6 +43,8 @@ var port = 3000;
 var prefix = path.join(__dirname, "..", "figmafiles") + path.sep;
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
+app.use(express.json());
+
 // function to read requested json file
 function getJson(filename) {
     return __awaiter(this, void 0, void 0, function () {
@@ -64,6 +66,12 @@ function getJson(filename) {
         });
     });
 }
+//ENDPOINTS FOR API BELOW
+
+app.get('/', function(req,res){
+  res.send("Welcome to Team SH27'S API");
+})
+
 // end-point point for primary button
 app.get('/button-primary', function (req, res) {
     return __awaiter(_this, void 0, void 0, function () {
@@ -453,13 +461,15 @@ app.get("/preview/breadcrumb", async (req, res) => {
 });
 
 //Creating a webhook endpoint - receives updates at this endpoint
+const fetchFigmaFile = require('../figmaApi/initialisation/figmaTest')
 const init = require('../figmaApi/initialize')
+
 app.post('/updates',async (req,res) =>{
+    res.sendStatus(200);
     console.log('Updating changes made ....');
-    const event = req.event;
-    if (event == 'FILE_UPDATE'){
-        res.sendStatus(200)
-        
+    const {event_type} = req.body;
+    if (event_type === 'FILE_VERSION_UPDATE'){
+        response = await fetchFigmaFile();
         await init();
     }
     

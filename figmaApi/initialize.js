@@ -84,11 +84,12 @@ const BREADCRUMB_VARIANTS = [
   await generateButtonTokens(BUTTON_VARIANTS);
   await generateSearchBoxTokens(SEARCHBOX_VARIANTS);
   await generateTabsTokens(TABS_VARIANTS);
-  await generateLogoTokens(LOGO_VARIANRS);
-  await generateHeaderTokens(HEADER_VARIANTS);
-  await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
-  await generatePhaseBannerTokens(PHASEBANNER_VARIANTS);
-  await generateBlockquoteTokens(BLOCKQUOTE_VARIANTS);
-  await generateDownloadLinkTokens(DOWNLOAD_LINK_VARIANTS);
+  //await generateLogoTokens(LOGO_VARIANRS);
+  //await generateHeaderTokens(HEADER_VARIANTS);
+  //await generateBreadcrumbTokens(BREADCRUMB_VARIANTS);
+  //await generatePhaseBannerTokens(PHASEBANNER_VARIANTS);
+  //await generateBlockquoteTokens(BLOCKQUOTE_VARIANTS);
+  //await generateDownloadLinkTokens(DOWNLOAD_LINK_VARIANTS);
 }
-init();
+
+module.exports = init;
