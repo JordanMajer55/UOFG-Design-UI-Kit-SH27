@@ -14,7 +14,7 @@ fetch(`https://api.figma.com/v2/webhooks`, {
         passcode: 'Verified',
         file_key: process.env.FILE_ID,
         file_name: 'UofG Component library - CS (Copy)',
-        endpoint: 'https://frockless-londa-untraitorously.ngrok-free.dev/updates', //our new webserver that figma can access - no longer http://localserver.....
+        endpoint: `${process.env.NGROK_URL}/updates`, //our new webserver that figma can access - no longer http://localserver.....
         description: 'Webhook to notify for file_updates'
 
     })
