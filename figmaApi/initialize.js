@@ -57,9 +57,6 @@ async function init() {
   const TABS_VARIANTS = [
     {
       name: "default",
-      position: "24",
-      canvas: "0",
-      frame: "9",
       nodeId: "32:1306",
       fileName: "Tabs-Default"
     },
