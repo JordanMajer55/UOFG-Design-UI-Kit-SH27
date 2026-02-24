@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { SearchBox } from "./searchBox";
 import { PhaseBanner } from "./PhaseBanner";
 import { Logo } from "./Logo";
+import { Tabs } from "./Tabs";
 
 const meta: Meta = {
   title: "Final Layout",
@@ -63,6 +64,10 @@ export const Default: StoryObj = {
             <SearchBox />
           </div>
         </div>
+      </div>
+
+      <div style={{ width: "100%" }}>
+        <Tabs />
       </div>
     </div>
   ),
