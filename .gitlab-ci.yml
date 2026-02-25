@@ -7,7 +7,7 @@ eslint:
   stage: lint
   script:
     - npm ci
-    - npx eslint --format gitlab . --ext .js,.jsx,.ts,.tsx
+    - npm run lint
   artifacts:
     reports:
       codequality: gl-codequality.json   
