@@ -3,6 +3,9 @@ const tsPlugin = require('@typescript-eslint/eslint-plugin');
 
 module.exports = [
   {
+    ignores: ['storybook/', 'node_modules/']
+  },
+  {
     files: ['*.js', '*.cjs', '*.mjs'],
     languageOptions: {
       parserOptions: {
@@ -20,8 +23,7 @@ module.exports = [
       semi: ['error', 'always'],
       quotes: ['error', 'single'],
       'no-unused-vars': ['warn']
-    },
-    ignores: ['storybook/', 'node_modules/'] 
+    }, 
   },
   {
     files: ['*.ts'],
