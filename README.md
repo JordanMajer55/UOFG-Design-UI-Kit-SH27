@@ -13,9 +13,6 @@ Working prototype where the design system is delivering design to a prototyped p
 
 If the customer makes a change to their design files, then it is updated to any platform using their set of design files.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
 ## Installation
 Installed from Gitlab Page
 
