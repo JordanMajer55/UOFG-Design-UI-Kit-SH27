@@ -1,0 +1,5 @@
+# ignore storybook files
+storybook/
+
+# ignore common non-source
+node_modules/
