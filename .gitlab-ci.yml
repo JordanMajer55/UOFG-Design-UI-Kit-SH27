@@ -1,0 +1,13 @@
+image: node:22-alpine
+
+stages:
+  - lint
+
+eslint:
+  stage: lint
+  script:
+    - npm ci
+    - npm run lint
+  artifacts:
+    reports:
+      codequality: gl-codequality.json   
