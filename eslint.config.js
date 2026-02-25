@@ -20,7 +20,8 @@ module.exports = [
       semi: ['error', 'always'],
       quotes: ['error', 'single'],
       'no-unused-vars': ['warn']
-    }
+    },
+    ignores: ['storybook/', 'node_modules/'] 
   },
   {
     files: ['*.ts'],
