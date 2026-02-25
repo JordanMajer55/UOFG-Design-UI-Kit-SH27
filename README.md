@@ -30,7 +30,7 @@ Environment Variables That Need To Be Defined:
 - TEAM_ID - The ID of the team
 - FILE_ID - The ID of the figma library
 - FIGMA_TOKEN - The Personal Access Token that has access to all the necessary privileges on figma
-NGROK_URL - Was needed to allow us to get webhook updates, however could be changed once API is on an actual server
+- NGROK_URL - Was needed to allow us to get webhook updates, however could be changed once API is on an actual server
 
 ## Authors and acknowledgment
 Contributors:
