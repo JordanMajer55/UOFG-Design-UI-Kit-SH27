@@ -1,10 +1,10 @@
 {
   "button": {
     "primary": {
-      "backgroundColor": "rgba(139, 195, 74, 1)",
+      "backgroundColor": "rgba(0, 56, 101, 1)",
       "borderRadius": 6,
-      "width": 234,
-      "height": 157,
+      "width": 129,
+      "height": 48,
       "padding": {
         "top": 12,
         "right": 36,

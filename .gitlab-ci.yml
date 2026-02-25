@@ -1,0 +1,13 @@
+image: node:22-alpine
+
+stages:
+  - lint
+
+eslint:
+  stage: lint
+  script:
+    - npm ci
+    - npx eslint --format gitlab . --ext .js,.jsx,.ts,.tsx
+  artifacts:
+    reports:
+      codequality: gl-codequality.json   
