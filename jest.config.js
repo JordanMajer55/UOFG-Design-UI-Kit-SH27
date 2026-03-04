@@ -1,8 +1,8 @@
 module.exports = {
-  testEnvironment: "node",
-  testMatch: ["**/*.test.js"],
+  testEnvironment: 'node',
+  testMatch: ['**/*.test.js'],
   clearMocks: true,
   moduleNameMapper: {
-    "^node-fetch$": "<rootDir>/test/mocks/node-fetch.js",
+    '^node-fetch$': '<rootDir>/test/mocks/node-fetch.js',
   },
 };
