@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -34,17 +34,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-const path = require("path");
 var _this = this;
 var express = require('express');
 var app = express();
+app.use(express.json());
 var fs = require("fs/promises");
 var port = 3000;
-var prefix = path.join(__dirname, "..", "figmafiles") + path.sep;
+var prefix = "./../figmafiles/";
+var path = require("path");
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
-app.use(express.json());
-
 // function to read requested json file
 function getJson(filename) {
     return __awaiter(this, void 0, void 0, function () {
@@ -53,7 +52,7 @@ function getJson(filename) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, fs.readFile(path.join(prefix, filename), "utf8")];
+                    return [4 /*yield*/, fs.readFile(prefix + filename, 'utf8')];
                 case 1:
                     data = _a.sent();
                     return [2 /*return*/, JSON.parse(data)];
@@ -66,415 +65,175 @@ function getJson(filename) {
         });
     });
 }
-//ENDPOINTS FOR API BELOW
-
-app.get('/', function(req,res){
-  res.send("Welcome to Team SH27'S API");
-})
-
 // end-point point for primary button
-app.get('/button-primary', function (req, res) {
-    return __awaiter(_this, void 0, void 0, function () {
-        var json;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getJson("Button.json")];
-                case 1:
-                    json = _a.sent();
-                    if (json != null) {
-                        res.json(json);
-                    }
-                    else {
-                        res.status(500).json({ error: "Error Occured While While Fetching Data" });
-                    }
-                    return [2 /*return*/];
-            }
-        });
+app.get('/button-primary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Button-Primary.json")];
+            case 1:
+                json = _a.sent();
+                if (json != null) {
+                    res.json(json);
+                }
+                else {
+                    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+                }
+                return [2 /*return*/];
+        }
     });
-});
-
-app.get('/button-secondary', async (req, res) => {
-  const json = await getJson("Button-Secondary.json");
-
-    if (json != null) {
-        res.json(json);
-    } else {
-        res.status(500).json({ error: "Error Occured While While Fetching Data" });
-    }
-});
-
-
-//endpoint for client to receive the json files - usually for a specific component
-app.get('/button-primary', async (req, res) => {
-    const json = await getJson("buttonTokens.json");
-    if (json != null) {
-        res.json(json);
-    }
-    else {
-        res.status(500).json({ error: "Error Occured While While Fetching Data" });
-    }
-})
-
-app.get('/searchbox', async (req, res) => {
-    const json = await getJson("SearchBox-Default.json");
-    if (json) res.json(json);
-    else res.status(500).json({ error: "Error fetching SearchBox" });
-});
-
-app.get('/uog-logo', async (req, res) => {
-  const json = await getJson("Logo-Default.json");
-  if (json) res.json(json);
-  else res.status(500).json({ error: "Error fetching UoG Logo" });
-});
-
-app.get('/header-text', async (req, res) => {
-  const json = await getJson("Header.json");
-  if (json) res.json(json);
-  else res.status(500).json({ error: "Error fetching Header" });
-});
-
-app.get('/breadcrumb', async (req, res) => {
-  const json = await getJson("Breadcrumb.json");
-  if (json) res.json(json);
-  else res.status(500).json({ error: "Error fetching Breadcrumb" });
-});
-
-// for display purposes (http://localhost:3000/preview/searchbox)
-app.get("/preview/searchbox", async (req, res) => {
-  const json = await getJson("SearchBox-Default.json");
-  if (!json) return res.status(500).send("No tokens");
-
-    const t = json.searchBox.default;
-
-    res.send(`
-    <html>
-      <body style="font-family: system-ui; padding: 24px;">
-        <div style="display:flex; gap:12px; align-items:center;">
-          <div style="
-            width:${t.input.width}px;
-            height:${t.input.height}px;
-            background:${t.input.backgroundColor};
-            border:${t.input.borderWidth}px solid ${t.input.borderColor};
-            display:flex;
-            align-items:center;
-            padding:0 12px;
-            box-sizing:border-box;
-          ">
-            <span style="opacity:0.5;">Search…</span>
-          </div>
-
-          <button style="
-            height:${t.button.height}px;
-            background:${t.button.backgroundColor};
-            border:none;
-            border-radius:${t.button.borderRadius}px;
-            padding:${t.button.padding.top}px ${t.button.padding.right}px;
-            color:${t.button.textColor};
-            font-family:${t.button.typography?.fontFamily || "inherit"};
-            font-size:${t.button.typography?.fontSize}px;
-            line-height:${t.button.typography?.lineHeight}px;
-            font-weight:${t.button.typography?.fontWeight};
-            cursor:pointer;
-          ">
-            ${t.button.text || "Search"}
-          </button>
-        </div>
-      </body>
-    </html>
-  `);
-});
-
-// for display purposes (http://localhost:3000/preview/phasebanner-beta)
-app.get("/phasebanner-beta", async (req, res) => {
-    const json = await getJson("PhaseBanner-Beta.json");
-    if (json) res.json(json);
-    else res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
-});
-
-app.get("/preview/phasebanner-beta", async (req, res) => {
-    const json = await getJson("PhaseBanner-Beta.json");
-    if (!json) return res.status(500).send("No tokens");
-
-    const t = json.phaseBanner.beta;
-
-    res.send(`
-    <html>
-      <body style="font-family: system-ui; padding: 24px;">
-        <div style="
-          width:${t.container.width || 738}px;
-          height:${t.container.height || 60}px;
-          box-sizing:border-box;
-
-          display:flex;
-          align-items:center;
-          gap:${t.container.gap || 0}px;
-
-          background:${t.container.backgroundColor};
-          padding:${t.container.padding.top || 0}px ${t.container.padding.right || 0}px ${t.container.padding.bottom || 0}px ${t.container.padding.left || 0}px;
-        ">
-          <span style="
-            display:inline-flex;
-            align-items:center;
-            box-sizing:border-box;
-
-            background:${t.tag?.backgroundColor || "#003865"};
-            color:${t.tag?.textColor || "#fff"};
-
-            padding:${t.tag?.padding.top || 6}px ${t.tag?.padding.right || 12}px ${t.tag?.padding.bottom || 6}px ${t.tag?.padding.left || 12}px;
-
-            font-family:${t.tag?.typography?.fontFamily || "inherit"};
-            font-size:${t.tag?.typography?.fontSize || 16}px;
-            line-height:${t.tag?.typography?.lineHeight || 20}px;
-            font-weight:${t.tag?.typography?.fontWeight || 600};
-            white-space:nowrap;
-          ">
-            ${t.tag?.text || "Beta"}
-          </span>
-
-          <span style="
-            box-sizing:border-box;
-            color:${t.message?.color || "#000"};
-
-            font-family:${t.message?.typography?.fontFamily || "inherit"};
-            font-size:${t.message?.typography?.fontSize || 16}px;
-            line-height:${t.message?.typography?.lineHeight || 24}px;
-            font-weight:${t.message?.typography?.fontWeight || 400};
-
-            overflow:hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
-          ">
-            ${t.message?.text || ""}
-          </span>
-        </div>
-      </body>
-    </html>
-  `);
-});
-
-app.get("/preview/blockquote", async (req, res) => {
-    const json = await getJson("Blockquote.json");
-    if (!json) return res.status(500).send("No tokens");
-
-    const t = json.blockquote.default;
-
-    res.send(`
-    <html>
-      <body style="font-family: system-ui; padding: 40px;">
-        <div style="
-  position: relative;
-  width:${t.container.width}px;
-  box-sizing:border-box;
-  padding-top: 0px;
-">
-
-  <div style="
-    position:absolute;
-    top:0;
-    left:0;
-    color:${t.icon.color};
-    font-size:60px;
-    line-height:1;
-  ">❝</div>
-
-  <div style="
-    padding-left:${(t.icon.width ?? 40) + (t.container.gap ?? 18)}px;
-    color:${t.text.color};
-    font-family:${t.text.typography.fontFamily};
-    font-size:${t.text.typography.fontSize}px;
-    line-height:${t.text.typography.lineHeight}px;
-    font-weight:${t.text.typography.fontWeight};
-    letter-spacing:${t.text.typography.letterSpacing}px;
-  ">
-    ${t.text.text}
-  </div>
-
-</div>
-      </body>
-    </html>
-  `);
-});
-
-app.get("/preview/downloadlink", async (req, res) => {
-  const json = await getJson("DownloadLink-Default.json");
-  if (!json) return res.status(500).send("No tokens");
-
-  const t = json.downloadLink.default;
-
-  res.send(`
-    <html>
-      <body style="font-family: system-ui; padding:40px; background:#fff;">
-        <div style="
-          width:${t.container.width || 744}px;
-          height:${t.container.height || 97}px;
-          background:${t.container.backgroundColor || "#f2f2f2"};
-          display:flex;
-          align-items:center;
-          box-sizing:border-box;
-          overflow:hidden;
-        ">
-
-          <!-- Left accent bar -->
-          <div style="
-            width:${t.accentBar?.width || 4}px;
-            height:100%;
-            background:${t.accentBar?.color || "#003865"};
-            flex:0 0 auto;
-          "></div>
-
-          <!-- Text block -->
-          <div style="
-            flex:1;
-            padding:16px 24px;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            gap:4px;
-          ">
-            <div style="
-              color:${t.title?.color || "#333"};
-              font-family:${t.title?.typography?.fontFamily || "inherit"};
-              font-size:${t.title?.typography?.fontSize || 21}px;
-              line-height:${t.title?.typography?.lineHeight || 26}px;
-              font-weight:${t.title?.typography?.fontWeight || 400};
-            ">
-              ${t.title?.text || "Document title"}
-            </div>
-
-            <div style="
-              color:${t.meta?.color || "#666"};
-              font-family:${t.meta?.typography?.fontFamily || "inherit"};
-              font-size:${t.meta?.typography?.fontSize || 16}px;
-              line-height:${t.meta?.typography?.lineHeight || 21}px;
-              font-weight:${t.meta?.typography?.fontWeight || 400};
-            ">
-              ${t.meta?.text || "PDF | 545K"}
-            </div>
-          </div>
-
-          <!-- Divider -->
-          <div style="
-            width:1px;
-            height:${t.divider?.height || 49}px;
-            background:${t.divider?.color || "#ccc"};
-            margin-right:18px;
-          "></div>
-
-          <!-- Icon -->
-          <div style="
-            width:64px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            color:${t.icon?.color || "#9A3A06"};
-            font-size:${Math.max(16, t.icon?.height || 24)}px;
-            margin-right:12px;
-          ">
-            ↓
-          </div>
-
-        </div>
-      </body>
-      </html>
-  `);
-});
-
-// for display purposes (http://localhost:3000/preview/header)
-app.get("/preview/header", async (req, res) => {
-  const json = await getJson("Header.json");
-  if (!json) return res.status(500).send("No tokens");
-
-  const t = json.header;
-  const items = Array.isArray(t?.items) && t.items.length
-    ? t.items
-    : (t?.text ? [t.text] : []);
-
-  res.send(`
-    <html>
-    <body style="font-family: system-ui; padding: 24px;">
-      <div style="
-        display:flex;
-        align-items:center;
-        gap:24px;
-        font-family:${t?.typography?.fontFamily || "inherit"};
-        font-size:${t?.typography?.fontSize ?? 16}px;
-        font-weight:${t?.typography?.fontWeight ?? 400};
-        line-height:${t?.typography?.lineHeightPx ?? 20}px;
-        letter-spacing:${t?.typography?.letterSpacing ?? 0}px;
-        color:${t?.color ?? "inherit"};
-      ">
-        ${items.map((item) => `<span>${item}</span>`).join("")}
-      </div>
-    </body>
-    </html>
-  `);
-});
-
-// for display purposes (http://localhost:3000/preview/logo)
-app.get("/preview/logo", async (req, res) => {
-  const json = await getJson("Logo-Default.json");
-  if (!json) return res.status(500).send("No tokens");
-
-  const t = json.uogLogo;
-
-  res.send(`
-    <html>
-      <body style="font-family: system-ui; padding: 24px;">
-        <img src="${t?.pngUrl || ""}" style="display:block;" />
-      </body>
-    </html>
-  `);
-});
-
-// for display purposes (http://localhost:3000/preview/breadcrumb)
-app.get("/preview/breadcrumb", async (req, res) => {
-  const json = await getJson("Breadcrumb.json");
-  if (!json) return res.status(500).send("No tokens");
-
-  const t = json.breadcrumb;
-  const items = Array.isArray(t?.items) && t.items.length ? t.items : [];
-
-  res.send(`
-    <html>
-    <body style="font-family: system-ui; padding: 24px;">
-      <div style="
-        display:flex;
-        align-items:center;
-        gap:${t?.itemSpacing ?? 12}px;
-        padding:${t?.paddingTop ?? 0}px ${t?.paddingRight ?? 0}px ${t?.paddingBottom ?? 0}px ${t?.paddingLeft ?? 0}px;
-        box-sizing:border-box;
-        font-family:${t?.typography?.fontFamily || "inherit"};
-        font-size:${t?.typography?.fontSize ?? 16}px;
-        font-weight:${t?.typography?.fontWeight ?? 400};
-        line-height:${t?.typography?.lineHeightPx ?? 21}px;
-        letter-spacing:${t?.typography?.letterSpacing ?? 0}px;
-      ">
-        ${items.map((item, i) =>
-          i === 0
-            ? `<span>${item}</span>`
-            : `<span style="opacity:.5;">›</span><span>${item}</span>`
-        ).join("")}
-      </div>
-    </body>
-    </html>
-  `);
-});
-
+}); });
+app.get('/button-secondary', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Button-Secondary.json")];
+            case 1:
+                json = _a.sent();
+                if (json != null) {
+                    res.json(json);
+                }
+                else {
+                    res.status(500).json({ error: "Error Occured While While Fetching Data" });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/header-text', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Header.json")];
+            case 1:
+                json = _a.sent();
+                if (json != null) {
+                    res.json(json);
+                }
+                else {
+                    res.status(500).json({ error: "Error fetching Header" });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/uog-logo', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Logo-Default.json")];
+            case 1:
+                json = _a.sent();
+                if (json != null) {
+                    res.json(json);
+                }
+                else {
+                    res.status(500).json({ error: "Error fetching Logo" });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/breadcrumb', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Breadcrumb.json")];
+            case 1:
+                json = _a.sent();
+                if (json != null) {
+                    res.json(json);
+                }
+                else {
+                    res.status(500).json({ error: "Error fetching Breadcrumb" });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/searchbox', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("SearchBox-Default.json")];
+            case 1:
+                json = _a.sent();
+                if (json)
+                    res.json(json);
+                else
+                    res.status(500).json({ error: "Error fetching SearchBox" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/phasebanner-beta", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("PhaseBanner-Beta.json")];
+            case 1:
+                json = _a.sent();
+                if (json)
+                    res.json(json);
+                else
+                    res.status(500).json({ error: "Error fetching PhaseBanner-Beta" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/preview/blockquote", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("Blockquote.json")];
+            case 1:
+                json = _a.sent();
+                if (!json)
+                    res.json(json);
+                else
+                    res.status(500).json({ error: "Error fetching Blockquote" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/preview/downloadlink", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var json;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, getJson("DownloadLink-Default.json")];
+            case 1:
+                json = _a.sent();
+                if (!json)
+                    res.json(json);
+                else
+                    res.status(500).json({ error: "Error fetching DownloadLink-Default" });
+                return [2 /*return*/];
+        }
+    });
+}); });
 //Creating a webhook endpoint - receives updates at this endpoint
-const fetchFigmaFile = require('../figmaApi/initialisation/figmaTest')
-const init = require('../figmaApi/initialize')
-
-app.post('/updates',async (req,res) =>{
-    res.sendStatus(200);
-    console.log('Updating changes made ....');
-    const {event_type} = req.body;
-    if (event_type === 'FILE_VERSION_UPDATE'){
-        response = await fetchFigmaFile();
-        await init();
-    }
-    
-})
-
-app.listen(port, () => {
-    console.log(`This is the local webserver, running at http://localhost:${port}`);
-})
+var fetchFigmaFile = require('../figmaApi/initialisation/figmaTest');
+var init = require('../figmaApi/initialize');
+app.post('/updates', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var event_type, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                res.sendStatus(200);
+                console.log('Updating changes made ....');
+                event_type = req.body.event_type;
+                if (!(event_type === 'FILE_VERSION_UPDATE')) return [3 /*break*/, 3];
+                return [4 /*yield*/, fetchFigmaFile()];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, init()];
+            case 2:
+                _a.sent();
+                _a.label = 3;
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+app.listen(port, function () {
+    console.log("This is the local webserver, running at http://localhost:".concat(port));
+});

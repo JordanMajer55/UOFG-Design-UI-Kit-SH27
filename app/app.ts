@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 const fs = require("fs/promises");
 const port = 3000;
 const prefix = "./../figmafiles/";
+const path = require("path");
 const cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 
@@ -89,6 +91,21 @@ app.get("/preview/downloadlink", async (req: any, res: any) => {
 
 });
 
-app.listen(port, () => {
+//Creating a webhook endpoint - receives updates at this endpoint
+const fetchFigmaFile = require('../figmaApi/initialisation/figmaTest')
+const init = require('../figmaApi/initialize')
 
-});
+app.post('/updates',async (req: any,res: any) =>{
+    res.sendStatus(200);
+    console.log('Updating changes made ....');
+    const {event_type} = req.body;
+    if (event_type === 'FILE_VERSION_UPDATE'){
+        const response = await fetchFigmaFile();
+        await init();
+    }
+    
+})
+
+app.listen(port, () => {
+    console.log(`This is the local webserver, running at http://localhost:${port}`);
+})
