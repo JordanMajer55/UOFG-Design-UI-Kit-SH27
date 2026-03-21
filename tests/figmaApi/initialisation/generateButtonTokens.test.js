@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateButtonTokens = require("../generateButtonTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateButtonTokens = require("../../../figmaApi/initialisation/generateButtonTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateButtonTokens", () => {
   const variant = { nodeId: "btn-1", fileName: "button", name: "primary" };
@@ -90,5 +90,60 @@ describe("generateButtonTokens", () => {
     });
 
     await expect(generateButtonTokens([variant])).rejects.toThrow();
+  });
+
+  it("writes the token file using the variant's fileName", async () => {
+    const component = {
+      fills: [{ color: { r: 0, g: 0, b: 1, a: 1 } }],
+      cornerRadius: 4,
+      absoluteBoundingBox: { width: 120, height: 40 },
+      paddingTop: 8, paddingRight: 12, paddingBottom: 8, paddingLeft: 12,
+      children: [{ type: "TEXT", style: { fontFamily: "Helvetica", fontWeight: 600, fontSize: 14, lineHeightPx: 20, letterSpacing: 0 } }],
+    };
+
+    fetchNode.mockResolvedValue({
+      nodes: { [variant.nodeId]: { document: component } },
+    });
+
+    await generateButtonTokens([variant]);
+
+    const writtenPath = fs.writeFileSync.mock.calls[0][0];
+    expect(writtenPath).toContain(variant.fileName);
+  });
+
+  it("processes multiple variants and writes a file for each", async () => {
+    const variant1 = { nodeId: "btn-primary", fileName: "Button-Primary", name: "primary" };
+    const variant2 = { nodeId: "btn-secondary", fileName: "Button-Secondary", name: "secondary" };
+
+    const component = {
+      fills: [{ color: { r: 0, g: 0, b: 1, a: 1 } }],
+      cornerRadius: 4,
+      absoluteBoundingBox: { width: 120, height: 40 },
+      paddingTop: 8,
+      paddingRight: 12,
+      paddingBottom: 8,
+      paddingLeft: 12,
+      children: [
+        {
+          type: "TEXT",
+          style: {
+            fontFamily: "Helvetica",
+            fontWeight: 600,
+            fontSize: 14,
+            lineHeightPx: 20,
+            letterSpacing: 0,
+          },
+        },
+      ],
+    };
+
+    // Return the correct component for whichever nodeId is requested
+    fetchNode.mockImplementation((nodeId) =>
+      Promise.resolve({ nodes: { [nodeId]: { document: component } } })
+    );
+
+    await generateButtonTokens([variant1, variant2]);
+
+    expect(fs.writeFileSync).toHaveBeenCalledTimes(2);
   });
 });

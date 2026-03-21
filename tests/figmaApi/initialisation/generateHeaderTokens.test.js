@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateHeaderTokens = require("../generateHeaderTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateHeaderTokens = require("../../../figmaApi/initialisation/generateHeaderTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateHeaderTokens", () => {
   const variant = { nodeId: "node-1", fileName: "header", name: "Header" };

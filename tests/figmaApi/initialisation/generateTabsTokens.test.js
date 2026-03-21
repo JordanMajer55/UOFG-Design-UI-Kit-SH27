@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateTabsTokens = require("../generateTabsTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateTabsTokens = require("../../../figmaApi/initialisation/generateTabsTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateTabsTokens", () => {
   const variant = { nodeId: "tabs-1", fileName: "tabs", name: "default" };

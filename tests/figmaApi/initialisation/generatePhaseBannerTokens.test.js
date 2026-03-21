@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generatePhaseBannerTokens = require("../generatePhaseBannerTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generatePhaseBannerTokens = require("../../../figmaApi/initialisation/generatePhaseBannerTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generatePhaseBannerTokens", () => {
   const variant = { nodeId: "pb-1", fileName: "phase", name: "default" };

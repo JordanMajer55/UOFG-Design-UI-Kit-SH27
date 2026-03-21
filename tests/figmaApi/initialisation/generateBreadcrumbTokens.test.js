@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateBreadcrumbTokens = require("../generateBreadcrumbTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateBreadcrumbTokens = require("../../../figmaApi/initialisation/generateBreadcrumbTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateBreadcrumbTokens", () => {
   const variant = { nodeId: "bc-1", fileName: "breadcrumb", name: "default" };
@@ -74,6 +74,26 @@ describe("generateBreadcrumbTokens", () => {
     Object.values(written.breadcrumb).forEach((value) => {
       expect(value).not.toBeUndefined();
     });
+  });
+
+  it("writes the token file using the variant's fileName", async () => {
+    const component = {
+      itemSpacing: 6,
+      paddingTop: 4, paddingRight: 6, paddingBottom: 4, paddingLeft: 6,
+      absoluteBoundingBox: { width: 220, height: 32 },
+      children: [
+        { type: "TEXT", characters: "Home", absoluteBoundingBox: { x: 0, y: 10, width: 40, height: 12 }, style: { fontFamily: "Arial", fontWeight: 400, fontSize: 14, lineHeightPx: 18, letterSpacing: 0 } },
+      ],
+    };
+
+    fetchNode.mockResolvedValue({
+      nodes: { [variant.nodeId]: { document: component } },
+    });
+
+    await generateBreadcrumbTokens([variant]);
+
+    const writtenPath = fs.writeFileSync.mock.calls[0][0];
+    expect(writtenPath).toContain(variant.fileName);
   });
 
   it("throws when node data is missing", async () => {

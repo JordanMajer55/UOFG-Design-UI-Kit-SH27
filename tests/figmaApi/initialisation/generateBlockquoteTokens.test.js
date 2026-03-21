@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateBlockquoteTokens = require("../generateBlockquoteTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateBlockquoteTokens = require("../../../figmaApi/initialisation/generateBlockquoteTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateBlockquoteTokens", () => {
   const variant = { nodeId: "bq-1", fileName: "blockquote", name: "default" };

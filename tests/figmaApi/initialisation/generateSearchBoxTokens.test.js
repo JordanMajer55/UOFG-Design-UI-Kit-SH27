@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateSearchBoxTokens = require("../generateSearchBoxTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateSearchBoxTokens = require("../../../figmaApi/initialisation/generateSearchBoxTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateSearchBoxTokens", () => {
   const variant = { nodeId: "sb-1", fileName: "searchbox", name: "default" };

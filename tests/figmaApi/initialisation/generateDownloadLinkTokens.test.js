@@ -1,12 +1,12 @@
 const fs = require("fs");
-const fetchNode = require("../figmaGetNode.js");
-const generateDownloadLinkTokens = require("../generateDownloadLinkTokens.js");
+const fetchNode = require("../../../figmaApi/initialisation/figmaGetNode.js");
+const generateDownloadLinkTokens = require("../../../figmaApi/initialisation/generateDownloadLinkTokens.js");
 
 jest.mock("fs", () => ({
   writeFileSync: jest.fn(),
 }));
 
-jest.mock("../figmaGetNode.js", () => jest.fn());
+jest.mock("../../../figmaApi/initialisation/figmaGetNode.js", () => jest.fn());
 
 describe("generateDownloadLinkTokens", () => {
   const variant = { nodeId: "dl-1", fileName: "download", name: "default" };
