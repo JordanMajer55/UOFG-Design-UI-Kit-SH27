@@ -3,8 +3,8 @@ const app = express();
 app.use(express.json());
 const fs = require("fs/promises");
 const port = 3000;
-const prefix = "./../figmafiles/";
 const path = require("path");
+const prefix = path.join(__dirname, '../figmafiles');
 const cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 
@@ -80,13 +80,13 @@ app.get("/phasebanner-beta", async (req: any, res: any) => {
 
 app.get("/preview/blockquote", async (req: any, res: any) => {
     const json = await getJson("Blockquote.json");
-    if (!json) res.json(json);
+    if (json) res.json(json);
     else res.status(500).json({ error: "Error fetching Blockquote" });
 });
 
 app.get("/preview/downloadlink", async (req: any, res: any) => {
   const json = await getJson("DownloadLink-Default.json");
-  if (!json) res.json(json);
+  if (json) res.json(json);
   else res.status(500).json({ error: "Error fetching DownloadLink-Default" });
 
 });

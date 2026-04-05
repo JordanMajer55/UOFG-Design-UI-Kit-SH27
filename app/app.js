@@ -40,8 +40,8 @@ var app = express();
 app.use(express.json());
 var fs = require("fs/promises");
 var port = 3000;
-var prefix = "./../figmafiles/";
 var path = require("path");
+var prefix = path.join(__dirname, '../figmafiles');
 var cors = require("cors"); // only needed to be able to test on same machine as API
 app.use(cors());
 // function to read requested json file
@@ -188,7 +188,7 @@ app.get("/preview/blockquote", function (req, res) { return __awaiter(_this, voi
             case 0: return [4 /*yield*/, getJson("Blockquote.json")];
             case 1:
                 json = _a.sent();
-                if (!json)
+                if (json)
                     res.json(json);
                 else
                     res.status(500).json({ error: "Error fetching Blockquote" });
@@ -203,7 +203,7 @@ app.get("/preview/downloadlink", function (req, res) { return __awaiter(_this, v
             case 0: return [4 /*yield*/, getJson("DownloadLink-Default.json")];
             case 1:
                 json = _a.sent();
-                if (!json)
+                if (json)
                     res.json(json);
                 else
                     res.status(500).json({ error: "Error fetching DownloadLink-Default" });
