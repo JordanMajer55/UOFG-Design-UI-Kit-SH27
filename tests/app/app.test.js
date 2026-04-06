@@ -260,45 +260,45 @@ describe("GET /phasebanner-beta", () => {
 // Preview endpoints
 
 describe("GET /preview/blockquote", () => {
-  it("returns 500 when token file is read successfully (inverted condition in route)", async () => {
+  it("returns JSON when the token file is found", async () => {
     const mockData = { blockquote: { default: { text: { text: "A great quote" } } } };
     readFile.mockResolvedValue(JSON.stringify(mockData));
     const handler = registeredRoutes["GET /preview/blockquote"];
     const res = mockRes();
     await handler({}, res);
+    expect(res.json).toHaveBeenCalledWith(mockData);
+  });
+
+  it("returns 500 when the token file cannot be read", async () => {
+    readFile.mockRejectedValue(new Error("ENOENT"));
+    const handler = registeredRoutes["GET /preview/blockquote"];
+    const res = mockRes();
+    await handler({}, res);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({ error: expect.any(String) })
     );
   });
-
-  it("calls res.json with null when the file cannot be read", async () => {
-    readFile.mockRejectedValue(new Error("ENOENT"));
-    const handler = registeredRoutes["GET /preview/blockquote"];
-    const res = mockRes();
-    await handler({}, res);
-    expect(res.json).toHaveBeenCalledWith(null);
-  });
 });
 
 describe("GET /preview/downloadlink", () => {
-  it("returns 500 when token file is read successfully (inverted condition in route)", async () => {
+  it("returns JSON when the token file is found", async () => {
     const mockData = { downloadLink: { default: { title: { text: "My Document" } } } };
     readFile.mockResolvedValue(JSON.stringify(mockData));
     const handler = registeredRoutes["GET /preview/downloadlink"];
     const res = mockRes();
     await handler({}, res);
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith(
-      expect.objectContaining({ error: expect.any(String) })
-    );
+    expect(res.json).toHaveBeenCalledWith(mockData);
   });
 
-  it("calls res.json with null when the file cannot be read", async () => {
+  it("returns 500 when the token file cannot be read", async () => {
     readFile.mockRejectedValue(new Error("ENOENT"));
     const handler = registeredRoutes["GET /preview/downloadlink"];
     const res = mockRes();
     await handler({}, res);
-    expect(res.json).toHaveBeenCalledWith(null);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith(
+      expect.objectContaining({ error: expect.any(String) })
+    );
   });
 });
