@@ -70,7 +70,7 @@ describe("fileUpdateWebhook", () => {
 
     const [, options] = global.fetch.mock.calls[0];
     const body = JSON.parse(options.body);
-    expect(body.team_id).toBe("team-123");
+    expect(body.context_id).toBe("team-123");
   });
 
   it("sets the webhook endpoint using the NGROK_URL env var", async () => {
